@@ -1,0 +1,97 @@
+\documentclass{svproc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+
+% Latex-Makros für häufig verwendete Formelzeichen
+\newcommand{\ortvek}[4]{{ }_{(#1)}{\boldsymbol{#2}}^{#3}_{#4} }
+\newcommand{\vek}[3]{\boldsymbol{#1}^{#2}_{#3}}
+\newcommand{\rotmat}[2]{{{ }^{#1}\boldsymbol{R}}_{#2}}
+\newcommand{\rotmato}[2]{{{ }^{#1}\boldsymbol{\overline{R}}}_{#2}}
+\newcommand{\transp}[0]{{\mathrm{T}}}
+\newcommand{\ks}[1]{{\mathcal{F}}_{#1}}
+
+% Für Deutsche Umlaute
+%\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+
+% Für Bilder
+\usepackage{graphicx}
+\usepackage{color}
+\graphicspath{{./figures/}}
+
+% to typeset URLs, URIs, and DOIs
+\usepackage{url}
+\def\UrlFont{\rmfamily}
+
+\begin{document}
+    
+\mainmatter              % start of a contribution
+%
+\title{Exploiting Dynamics Parameter Linearity for Design Optimization in combined Structural and Dimensional Robot Synthesis}
+%
+\titlerunning{Parameter Linearity in Design Optimization}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{Moritz Schappler \and Svenja Tappe \and Tobias Ortmaier}
+%
+\authorrunning{Schappler et al.} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+%\tocauthor{Moritz Schappler, Svenja Tappe, and Tobias Ortmaier}
+%
+\institute{Institute for Mechatronic Systems, Leibniz University Hannover, Germany,\\
+    \email{moritz.schappler@imes.uni-hannover.de}}
+
+\maketitle              % typeset the title of the contribution
+
+
+%ABSTRACT
+\begin{abstract}
+...
+\end{abstract}
+
+%KEYWORDS
+\begin{keywords}
+...
+\end{keywords}
+
+\section{Introduction}
+\label{sec:Intro}
+...
+
+The contributions of this paper are
+\begin{itemize}
+    \item ...
+\end{itemize}
+
+The remainder of the paper is structured as follows...
+
+\section{Properties of the Dynamics Model}
+\label{sec:DynMdl}
+
+\section{Dimensional Synthesis and Design Optimization}
+\label{sec:DimSynth}
+
+...
+
+\section{Exemplary Calculations}
+
+...
+
+\section{Conclusions}
+\label{sec:Conclusion}
+
+...
+
+\section*{Acknowledgements}
+
+The financial support from the Deutsche Forschungsgemeinschaft (German Research Foundation, DFG) under grant number OR 196/33-1 is gracefully acknowledged.
+
+% BIBLIOGRAPHY
+\bibliographystyle{spmpsci_unsrt}
+\bibliography{dimsynth_minpar_ref}
+
+\end{document}
