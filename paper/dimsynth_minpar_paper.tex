@@ -62,15 +62,42 @@
 \label{sec:Intro}
 
 % Was ist Entwurfsoptimierung? Einordnung
-%What is design optimization?
 
-% Entwurfsoptimierung wird eingesetzt, um vom Menschen erdachte Maschinen so zu parametrieren, dass sie gestellte Anforderungen bestmöglich erfüllt.
+% Entwurfsoptimierung wird eingesetzt, um vom Menschen erdachte Maschinen so zu parametrieren, dass sie gestellte Anforderungen bestmöglich erfüllen.
+% Die Parametrierung kann sich am Beispiel von Robotern auf Kinematik-Parameter wie die Längen der Segmente beziehen, auf die Auslegung der Strukturteile und auf die Auswahl und Auslegung des Antriebsstrangs.
 
-%Can be used to parametrize machines created by a human inventor or to assess the 
+
+% Abgrenzung Auslegung der Kinematikparameter und Entwurfsoptimierung
+%Ansätze für Optimierung der Kinematikparameter
+%Mehrkriterielle Optimierung von kinematischen Zielgrößen wie Arbeitsraum und Robotergröße [CeccarelliLan2004] oder zusätzlich Berücksichtigung statischer Zielgröße wie eines Steifigkeitsmodells für serielle und parallele Roboter [CarboneOttCec2007] oder dynamischer Zielgrößen, wie der über die Trajektorie verbrauchten Energie [RamirezKotOrt2017]
+%Die Entwurfsoptimierung bezüglich kinematischer Parameter kann auch gemeinsam mit die Dynamik beeinflussenden Parametern wie eines parametrischen CAD-Modells  [TarkianLunÖl2008,ZhouBai2015] oder der Antriebsstrangauslegung [ShillerSun1991] erfolgen
+
 % Überblick über Entwurfsoptimierung für Roboter hinsichtlich Antriebsstrang und Segmenten
-%Overview Design Optimization for Robots regarding drive train and links
 
-% Eine Bewertung von computergenerierten Strukturen ist damit ebenfalls möglich
+%Auslegung des Antriebsstrangs:
+% Grundprinzip ist eine gegebene Roboterstruktur mit definierten Kinematikparameter, dessen Antriebe an eine gegebene Trajektorie oder Punkt-zu-Punkt-Bewegung angepasst werden \cite{ChedmailGau1990}
+% Zielfunktion der Optimierung ist eine kurze Zykluszeit \cite{TarkianPerOelFen2011}, Masse der Antriebe \cite{ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011}, Lebensdauer der Getriebe \cite{PetterssonAndKru2005}, monetäre Kosten \cite{PetterssonAndKru2005}
+
+%Nebenbedingungen sind die Bemessungsmomente und Drehzahl von Motor und Getriebe [ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011], 
+
+% Mögliche zusätzliche Erweiterungen der Simulation des Systems sind eine zusätzliche Dynamik aus einem thermischen Motormodell [ChedmailGau1990] oder die Berechnung der Vorwärtsdynamik des geregelten Systems mit Betrachtung des Regelfehlers und der elektrischen Motordynamik [Padilla-GarciaCruRod2015], anstelle der reinen Betrachtung der inversen Dynamik mit Vernachlässigung regelungstechnischer Effekte.
+
+
+% Auslegung der Struktur
+% Bei Optimierung der Strukturparameter kann ebenfalls deren Masse als Zielfunktion verwendet werden [TarkianPerOelFen2011]
+
+%[ZhouBai2015]
+
+% Die Ansätze können weiterhin darin unterschieden werden, ob die Trajektorie im Zeitverlauf Teil der Optimierung ist [PetterssonAndKru2005], oder ob diese als konstant gegeben ist [TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015].
+
+% Bei einer zusätzlichen Optimierung der Segmentlängen ist aufgrund der Neuberechnung der inversen Kinematik auch die Neuberechnung der Trajektorie erforderlich [TarkianLunÖl2008,ZhouBai2015]
+
+
+% Der Optimierungsalgorithmus zur Berücksichtigung der diskreten Entwurfsvariablen sind genetische Algorithmen [TarkianPerOelFen2011,Padilla-GarciaCruRod2015], Particle Swarm Optimierung [RamirezKotOrt2017] oder Complex-Algorithmus mit Modifikationen bezüglich der Rundung und Interpolation in der Auswahltabelle  [PetterssonAndKru2005] [ZhouBaiHan2011]
+% ...zur Berücksichtigung  der diskreten Entwurfsvariablen Complex, PSO, GA
+% ...sind Gradientenbasierte Verfahren [], Simplex [TarkianPerOelFen2011]
+
+% ...Eine Bewertung von computergenerierten Strukturen ist damit ebenfalls möglich
 
 The contributions of this paper are
 \begin{itemize}
@@ -82,11 +109,24 @@ The contributions of this paper are
 
 The remainder of the paper is structured as follows...
 
+% * Vorstellung des Konzepts der kombinierten Struktur- und Maßsynthese und Herleitung des Bedarfs einer effizienten Entwurfsoptimierung
+% * Zeigen der Eigenschaften der verwendeten Dynamikmodellierung 
+% * Einsatz dieser Dynamikmodellierung in der Entwurfsoptimierung
+% * Überschlägige Rechnung zum Potential der Verbesserung
+% * Zusammenfassung
+
+\section{Combined Structural and Dimensional Synthesis}
+\label{sec:DimSynth}
+
+%[RamirezKotOrt2015]
+
 \section{Properties of the Dynamics Model}
 \label{sec:DynMdl}
 
-\section{Dimensional Synthesis and Design Optimization}
-\label{sec:DimSynth}
+%[KhalilDom2002]
+
+\section{Improve the Efficiency of Design Optimizing}
+\label{sec:DesOptImprove}
 
 ...
 
