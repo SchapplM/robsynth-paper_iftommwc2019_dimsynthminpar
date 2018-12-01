@@ -93,17 +93,22 @@
 % Bei einer zusätzlichen Optimierung der Segmentlängen ist aufgrund der Neuberechnung der inversen Kinematik auch die Neuberechnung der Trajektorie erforderlich [TarkianLunÖl2008,ZhouBai2015]
 
 
-% Der Optimierungsalgorithmus zur Berücksichtigung der diskreten Entwurfsvariablen sind genetische Algorithmen [TarkianPerOelFen2011,Padilla-GarciaCruRod2015], Particle Swarm Optimierung [RamirezKotOrt2017] oder Complex-Algorithmus mit Modifikationen bezüglich der Rundung und Interpolation in der Auswahltabelle  [PetterssonAndKru2005] [ZhouBaiHan2011]
+% Der Optimierungsalgorithmus zur Berücksichtigung der diskreten Entwurfsvariablen sind genetische Algorithmen [TarkianPerOelFen2011,Padilla-GarciaCruRod2015], Particle Swarm Optimierung [RamirezKotOrt2017] oder Complex-Algorithmus mit Modifikationen bezüglich der Rundung und Interpolation in der Auswahltabelle  [PetterssonAndKru2005] [ZhouBaiHan2011] oder die Interpolation der Auswahltabelle und Überführung in ein kontinuierliches Problem [ChedmailGau1990]
+% Je nach Art der Annahmen über die Antriebe und Segmente ist ein rekursives Vorgehen von distalen zu proximalen Gelenken möglich [ChedmailGau1990].
 % ...zur Berücksichtigung  der diskreten Entwurfsvariablen Complex, PSO, GA
 % ...sind Gradientenbasierte Verfahren [], Simplex [TarkianPerOelFen2011]
 
 % ...Eine Bewertung von computergenerierten Strukturen ist damit ebenfalls möglich
 
+% Kurzfassung des Beitrags des Papers
+% Alle bisherigen Arbeiten zur Entwurfsoptimierung vernachlässigen die Eigenschaft der Parameterlinearität der Dynamik-Gleichungen, die hauptsächlich aus dem Bereich Parameteridentifikation bekannt ist.
+%[ChedmailGau1990] nennt zwar die Nutzung der parameterlinearen Form zur Berechnung der Dynamik und geht auf die Anpassung der Parameter ein, die Ausnutzung der Parameterlinearität in der Entwurfsoptimierung wird aber nicht erwähnt. Da auch keine der folgenden Arbeiten darauf eingehen, wird dieser Aspekt in diesem Paper hervorgehoben.
+
 The contributions of this paper are
 \begin{itemize}
     % Präsentation eines Ansatzes zur schnelleren Berechnung der inversen Dynamik für die Entwurfsoptimierung von Mehrkörpersystemen, insbesondere von Manipulatoren
+    % Vorstellung eines Konzepts zur kombinierten Struktur- und Maßsynthese von seriellen und parallelen Robotern, Darstellung der Annahmen für die schnellere Berechnung
     % Beispielhafte Rechnungen zum Aufzeigen der Vorteile durch das Verfahren
-    % Vorstellung eines Konzepts zur kombinierten Struktur- und Maßsynthese von seriellen und parallelen Robotern
     \item ...
 \end{itemize}
 
@@ -119,23 +124,55 @@ The remainder of the paper is structured as follows...
 \label{sec:DimSynth}
 
 %[RamirezKotOrt2015]
+% Idee der kombinierten Struktur- und Maßsynthese: Für eine gegebene Roboteraufgabe mit Freiheitsgraden und Trajektorie und Last werden alle geeigneten seriellen und parallelen Strukturen ermittelt und davon die bestgeeignesten ausgewählt.
+% Dadurch wird der Vergleich einer Vielzahl von Strukturen notwendig. Z.B. 10 für 2T1R, 35 für 3T1R, 326 für 3T3R serielle Strukturen.
+% Für Parallele Strukturen ergeben sich ebenfalls eine Vielzahl an Kombinationen, wie z.B. von Gogu mit Hilfe der evolutionären Morphologie ermittelt [Gogu].
+
+%Dadurch, dass mehrere verschachtelte Schleifen durchlaufen werden ist die Rechenzeit relativ hoch. Besonders der Rechenaufwand für die innere Schleife ist entscheidend für die Gesamtlaufzeit des Algorithmus
+%Nennung der Schleifen: Über alle Roboter, Über alle Kinematikparameter, Antriebs- und Segmentauslegung basierend auf inverser Dynamik zu allen Zeitschritten der Trajektorie
+% Blockschaltbild mit ungefährem Gesamtablauf
+% Für die Berechnung Dynamischer Leistungsmerkmale wie Gesamtmasse oder Energie (basierend auf den Gelenkmomenten) ist die Berechnung der inversen Dynamik notwendig.
+
+% Damit der Vergleich zwischen stark verschiedenen Strukturen mit möglichst wenigen Kennzahlen möglich ist:
+% Annahme für die Maßsynthese: Trajektorie bleibt gleich
+% Ansonsten müsste beim Vergleich der Strukturen verschiedene Kennzahlen wie Arbeitsraum, Fußabdruck, Energieverbrauch und zusätzlich die Verfahrdauer der Trajektorie einkriteriell gewichtet oder mehrkriteriell z.B. mittels Pareto-Front vergleichen werden.
+%Durch die Vorgabe der Trajektorie wird die Komplexität reduziert und die im Folgenden dargestellte Methode wäre nicht möglich.
 
 \section{Properties of the Dynamics Model}
 \label{sec:DynMdl}
 
 %[KhalilDom2002]
+% Dynamikmodell allgemein in verallgemeinerten Koordinaten, Grundlage für Antriebsauslegung (Modell mit Antrieb?)
+% Parameterlineare Form der Dynamik
+% Prinzip der Parametergruppierung: Zusammenfassung von Parametern vom Endeffektor zur Basis
+% Eigenschaft der Regressorform: Obere rechte Dreiecksform; die Gelenkmomente der letzten Achsen hängen nur von den letzten Dynamikparametern ab, die Gelenkmomente der ersten Achse hängen von allen Parametern ab. Dünne Besetztheit der Regressormatrix kann genutzt werden.
+
+% Für Segmentauslegung: Gelenkmomente sind allein nicht ausreichend. Bei Verwendung der Schnittkräfte in den Gelenken vor und nach dem Segment ist ebenfalls eine parameterlineare Darstellung möglich, allerdings sind durch Parameterzusammenfassung keine oder wesentlich weniger Vereinfachungen möglich als bei alleiniger Betrachtung der Gelenkmomente.
 
 \section{Improve the Efficiency of Design Optimizing}
 \label{sec:DesOptImprove}
 
+% Formel: Optimierungsproblem
+% Formel: Ausklammern des Regressors aus einer Operation
+% Blockschaltbild Optimierung ohne Ausnutzung der Parameterlinearen Form
+% Blockschaltbild Optimierung mit Ausnutzung
+
+%Rekapitulation der Annahme: Ist nicht möglich, wenn die Kartesische Trajektorie verändert wird und indirekt Zielfunktion der Optimierung ist [TarkianÖlFenPet2009,PetterssonOel2009,TarkianPerOelFen2011] oder Nebenbedingung [PetterssonAndKru2005] ist oder wenn die Kinematischen Längen Teil der Optimierung sind [TarkianLunÖl2008,ZhouBai2015]
+% ...oder die Nebenbedingungen beeinflusst.
 ...
 
 \section{Exemplary Calculations}
 
+% Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
+% Für Drei Roboter: LBR, Kuka 6FG, SCARA
+% Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
 ...
 
 \section{Conclusions}
 \label{sec:Conclusion}
+
+% Vorstellung des Verfahrens zur Ausnutzung ...
+% Ausblick: Anwendung des Verfahrens zum Vergleich von seriellen und parallelen Robotern in der kombinierten Struktur- und Maßsynthese.
 
 ...
 
