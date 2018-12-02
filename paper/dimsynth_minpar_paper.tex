@@ -153,8 +153,25 @@ The proposed improvement of the design optimization is explained in Sec.\,\ref{s
 
 %[RamirezKotOrt2015]
 % Idee der kombinierten Struktur- und Maßsynthese: Für eine gegebene Roboteraufgabe mit Freiheitsgraden und Trajektorie und Last werden alle geeigneten seriellen und parallelen Strukturen ermittelt und davon die bestgeeignesten ausgewählt.
+The synthesis of robot manipulators can be divided in two phases.
+The first phase is finding the number, kind and alignment of joints in the structural synthesis.
+To obtain a result with quantifiable performance, the dimensioning of the parameters regarding actuation, gears, link lengths and link geometry have to be defined in the dimensional synthesis.
+Usually the two phases are performed separately and the choice of a structure is done by the designer.
+Combining both phases means to perform the dimensional synthesis for all possible kinematic structures for a task with given degrees of freedom and trajectory.
+This allows a comparison of the different structures with optimized dimensions for the given task \cite{RamirezKotOrt2015}.
+The process is sketched in Fig.\,\ref{fig:structdimsynth}.
+
+\begin{figure}[tb]
+	\input{./figures/comb_struct_dim_synth.pdf_tex}
+	\caption{Overview of the procedure for combined structural and dimensional synthesis}
+	\label{fig:structdimsynth}
+\end{figure} 
+
 % Dadurch wird der Vergleich einer Vielzahl von Strukturen notwendig. Z.B. 10 für 2T1R, 35 für 3T1R, 326 für 3T3R serielle Strukturen.
 % Für Parallele Strukturen ergeben sich ebenfalls eine Vielzahl an Kombinationen, wie z.B. von Gogu mit Hilfe der evolutionären Morphologie ermittelt [Gogu].
+Despite the existence of methods to reduce the number of kinematic structures from the structural synthesis to a minimum \cite{RamirezKotOrt2015}, the computational effort in the dimensional synthesis is still high.
+For serial chain robots e.\,g. with the assumption of non-redundancy and only parallel and orthogonal joints there exist 10 possible configurations for planar motions (2T1R), 35 for Schönflies motions (3T1R) and 326 for general motions (3T3R) \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
+Also for parallel robots a high number of possible structures have been found and listed in \cite{Gogu2008} and its following parts.
 
 %Dadurch, dass mehrere verschachtelte Schleifen durchlaufen werden ist die Rechenzeit relativ hoch. Besonders der Rechenaufwand für die innere Schleife ist entscheidend für die Gesamtlaufzeit des Algorithmus
 %Nennung der Schleifen: Über alle Roboter, Über alle Kinematikparameter, Antriebs- und Segmentauslegung basierend auf inverser Dynamik zu allen Zeitschritten der Trajektorie
