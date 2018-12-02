@@ -50,12 +50,13 @@
 
 %ABSTRACT
 \begin{abstract}
-...
+In the design optimization of robot manipulators regarding drive train and link geometries the dynamics equations have to be evaluated repeatedly.
+The method proposed in this paper uses the property of parameter linearity of the dynamics equations to reduce the computational effort in the dynamics evaluations.
 \end{abstract}
 
 %KEYWORDS
 \begin{keywords}
-...
+Robot Design Optimization, Dynamics Regressor Form
 \end{keywords}
 
 \section{Introduction and State of the Art}
@@ -222,7 +223,7 @@ have the upper triangular form
 \bm{\Phi}=
 \begin{pmatrix} \bm{\Phi}_{1,\bm{\delta}_1} & \bm{\Phi}_{1,\bm{\delta}_2} & \dots & \bm{\Phi}_{1,\bm{\delta}_N} \\
 \bm{0} & \bm{\Phi}_{2,\bm{\delta}_2} & \dots & \bm{\Phi}_{2,\bm{\delta}_N} \\
-\vdots & \bm{0} & \ddots & \vdots \\
+\vdots & \ddots & \ddots & \vdots \\
 \bm{0} & \bm{0} & \bm{0} & \bm{\Phi}_{N,\bm{\delta}_N}
 \end{pmatrix}
 \label{equ:regressor_triangular}
