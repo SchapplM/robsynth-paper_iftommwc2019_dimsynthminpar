@@ -168,15 +168,81 @@ The proposed improvement of the design optimization is explained in Sec.\,\ref{s
 \section{Properties of the Dynamics Model}
 \label{sec:DynMdl}
 
+The inverse dynamics equations are used in the design optimization of robot links and drive trains to calculate the torque on the motor and the forces and moments on the links to evaluate if the considered configuration is feasible.
+Additionally, the properties of motor, gearbox and link affect the dynamics parameters and therefore the result of the equations.
+Since this paper focuses on the rigid body dynamics, other effects such as friction are neglected and the quantities of the drive train like motor torque, motor inertia and gear ratio are assumed to be included in the joint space equations and are omitted in the equations.
+This section defines the dynamics model in a nomenclature suitable to show the improvement of the design optimization in the next section and corresponds to textbook-knowledge \cite{KhalilDom2002}.
+
+To investigate the influence of the kinematic and dynamics parameters, the parameters are written explicitly in the equations.
+The kinematics parameters $\bm{\varrho}$ contain the parameters from the joint transformations according to the modified Denavit-Hartenberg notation and are e.\,g. the lengths of the links.
+%
+The dynamics parameters are defined in three representations:
+\begin{itemize}
+\item The barycentric dynamics parameters consist of the link masses $m_i$, the coordinates $\ortvek{i}{r}{}{C_i}$ of the links center of mass $C_i$ (CoM)  expressed in the respective link frame and the inertia tensor $\ortvek{i}{I}{(C_i)}{}$ w.r.t the links CoM. 
+\item The inertial parameters are related to the origin $O_i$ of the link frame and contain the links mass $m_i$, the first moment $m_i \ortvek{i}{r}{}{C_i}$ and the second moment $\ortvek{i}{I}{(O_i)}{}=\ortvek{i}{I}{(C_i)}{}+m_i\bm{S}^\transp(\ortvek{i}{r}{}{C_i})\bm{S}(\ortvek{i}{r}{}{C_i})$ which can be calculated with the Huygens-Steiner theorem using the skew-operator $\bm{S}$.
+The $10$ parameters for link $i$ are stacked in $\bm{\delta}_i$ and the parameters for all $N$ links are stacked in the $(10N \times 1)$ vector $\bm{\delta}$.
+\item The base inertial parameters can be obtained by combining the inertial parameters with the linear relation $\bm{\beta}=\bm{K}(\bm{\varrho})\bm{\delta}$.
+\end{itemize}
+%
+
 %[KhalilDom2002]
 % Dynamikmodell allgemein in verallgemeinerten Koordinaten, Grundlage für Antriebsauslegung (Modell mit Antrieb?)
 % Keine Formulierung der Dynamik auf Motorseite oder mit Getriebeübersetzung. Hinweis, dass die Umrechnung weiterhin so geschieht wie bisher, und dass die Motorträgheit mit der Getriebeübersetzung auf die Abtriebseite umgerechnet werden kann
+The joint torques $\bm{\tau}$ are calculated with the inverse dynamics model
+%
+\begin{equation}
+\bm{\tau} = 
+\bm{M}(\bm{q},\bm{\varrho},\bm{\delta}) \ddot{\bm{q}}
++ \bm{c}(\bm{q},\dot{\bm{q}},\bm{\varrho},\bm{\delta})
++ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta})
+=
+\bm{\Phi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta}
+\label{equ:invdyn}
+\end{equation}
+%
+of a serial-chain robot manipulator in the joint coordinates $\bm{q}$.
+It contains the effects of inertia $\bm{M}$, centrifugal and Coriolis forces $\bm{c}$ and gravity $\bm{g}$ and is linear in the inertial parameters $\bm{\delta}$.
+
+By deriving the dynamics with the Newton-Euler-Algorithm, it is also possible to express the internal forces $\bm{f}_i$ and moments $\bm{m}_i$ in the joints in the parameter linear form
+\begin{equation}
+\bm{w}_i = 
+\begin{pmatrix} \bm{f}_i^\transp & \bm{m}_i^\transp\end{pmatrix}^\transp
+=
+\bm{\Phi}_{\bm{w}_i}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta}.
+\label{equ:joint_wrench}
+\end{equation}
+
+% Eigenschaft der Regressorform: Obere rechte Dreiecksform; die Gelenkmomente der letzten Achsen hängen nur von den letzten Dynamikparametern ab, die Gelenkmomente der ersten Achse hängen von allen Parametern ab. Dünne Besetztheit der Regressormatrix kann genutzt werden.
+The regressor matrices $\bm{\Phi}_{\bm{\tau}}$ and
+$%\begin{equation}
+\bm{\Phi}_{\bm{w}}=\begin{pmatrix} \bm{\Phi}_{\bm{w}_1}^\transp & \dots & \bm{\Phi}_{\bm{w}_N}^\transp\end{pmatrix}^\transp
+$%\end{equation}
+have the upper triangular form
+\begin{equation}
+\bm{\Phi}=
+\begin{pmatrix} \bm{\Phi}_{1,\bm{\delta}_1} & \bm{\Phi}_{1,\bm{\delta}_2} & \dots & \bm{\Phi}_{1,\bm{\delta}_N} \\
+\bm{0} & \bm{\Phi}_{2,\bm{\delta}_2} & \dots & \bm{\Phi}_{2,\bm{\delta}_N} \\
+\vdots & \bm{0} & \ddots & \vdots \\
+\bm{0} & \bm{0} & \bm{0} & \bm{\Phi}_{N,\bm{\delta}_N}
+\end{pmatrix}
+\label{equ:regressor_triangular}
+\end{equation}
+%
+which shows the property of serial kinematic chains, that the inertial parameters of links proximal to the base have no influence on distal joints.
+
 % Parameterlineare Form der Dynamik
 % Prinzip der Parametergruppierung: Zusammenfassung von Parametern vom Endeffektor zur Basis
-% Eigenschaft der Regressorform: Obere rechte Dreiecksform; die Gelenkmomente der letzten Achsen hängen nur von den letzten Dynamikparametern ab, die Gelenkmomente der ersten Achse hängen von allen Parametern ab. Dünne Besetztheit der Regressormatrix kann genutzt werden.
 % Zeigen anhand der Regressormatrix der Inertialparameter mit Formel. Beschreibung der rekursiven Kombinationsvorschriften und daraus resultierender ähnlicher Form für den Minimalparameter-Regressor.
+The dynamics equation (\ref{equ:invdyn}) can also be expressed with the base parameters $\bm{\beta}$.
+These parameters are obtained with a recursive combination of inertial parameters with the same effect on the joint torque.
+Parameters without effect are removed from the parameter vector.
+Due to the recursive scheme from the end-effector link to the base link, the regressor matrix with respect to the base parameters has a similar upper triangular form as in (\ref{equ:regressor_triangular}).
+Exploiting this known structure allows further reduction of the computational load.
 
 % Für Segmentauslegung: Gelenkmomente sind allein nicht ausreichend. Bei Verwendung der Schnittkräfte in den Gelenken vor und nach dem Segment ist ebenfalls eine parameterlineare Darstellung möglich, allerdings sind durch Parameterzusammenfassung keine oder wesentlich weniger Vereinfachungen möglich als bei alleiniger Betrachtung der Gelenkmomente.
+The joint torque equation (\ref{equ:invdyn}) can be used for design optimization of the drive train.
+For the optimization of link parameters, the internal forces and moments from (\ref{equ:joint_wrench}) can be used. This equation can not be expressed with the base parameters, since all inertial parameters affect the internal forces.
+In the following, the regressor with respect to the inertial parameters $\bm{\delta}$ will be used in this paper, the base parameter regressor should however be used in the implementation wherever possible.
 
 \section{Improve the Efficiency of Design Optimizing}
 \label{sec:DesOptImprove}
