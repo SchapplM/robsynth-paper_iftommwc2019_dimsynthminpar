@@ -58,66 +58,93 @@
 ...
 \end{keywords}
 
-\section{Introduction}
+\section{Introduction and State of the Art}
 \label{sec:Intro}
 
 % Was ist Entwurfsoptimierung? Einordnung
 
 % Entwurfsoptimierung wird eingesetzt, um vom Menschen erdachte Maschinen so zu parametrieren, dass sie gestellte Anforderungen bestmöglich erfüllen.
+Design optimization formalizes the process of designing technical systems done by engineers and allows to find design parameters with optimization algorithms based on given objectives and constraints.
 % Die Parametrierung kann sich am Beispiel von Robotern auf Kinematik-Parameter wie die Längen der Segmente beziehen, auf die Auslegung der Strukturteile und auf die Auswahl und Auslegung des Antriebsstrangs.
-
+In the case of robotic systems the design parameters can be the lengths of the robot links, the shape of the links or the selection of the drive train components motor and gearbox.
 
 % Abgrenzung Auslegung der Kinematikparameter und Entwurfsoptimierung
+In this paper we distinguish between the optimization of parameters with influence on the forward kinematics and the optimization of parameters only influencing other characteristics of the robot such as the dynamics.
 %Ansätze für Optimierung der Kinematikparameter
 %Mehrkriterielle Optimierung von kinematischen Zielgrößen wie Arbeitsraum und Robotergröße [CeccarelliLan2004] oder zusätzlich Berücksichtigung statischer Zielgröße wie eines Steifigkeitsmodells für serielle und parallele Roboter [CarboneOttCec2007] oder dynamischer Zielgrößen, wie der über die Trajektorie verbrauchten Energie [RamirezKotOrt2017]
+The optimization of kinematic parameters is referred to as dimensional synthesis and can be implemented as multi-criterial optimization of kinematic criteria workspace and robot size \cite{CeccarelliLan2004}, static criteria like stiffness \cite{CarboneOttCec2007} or dynamics-based criteria like energy consumption \cite{RamirezKotOrt2017}.
 %Die Entwurfsoptimierung bezüglich kinematischer Parameter kann auch gemeinsam mit die Dynamik beeinflussenden Parametern wie eines parametrischen CAD-Modells  [TarkianLunÖl2008,ZhouBai2015] oder der Antriebsstrangauslegung [ShillerSun1991] erfolgen
+A combined optimization of parameters influencing kinematics and dynamics can be performed by using parametric CAD models \cite{TarkianLunOel2008,ZhouBai2015} or by combined optimization of link and drive train properties \cite{ShillerSun1991}.
 
 % Überblick über Entwurfsoptimierung für Roboter hinsichtlich Antriebsstrang und Segmenten
 
 %Auslegung des Antriebsstrangs:
 % Grundprinzip ist eine gegebene Roboterstruktur mit definierten Kinematikparameter, dessen Antriebe an eine gegebene Trajektorie oder Punkt-zu-Punkt-Bewegung angepasst werden \cite{ChedmailGau1990}
+For the \emph{optimal selection of drive train components} separate from the kinematics parameters, these can be regarded as given as well as the trajectory. % full trajectory or start and end points of the
 % Zielfunktion der Optimierung ist eine kurze Zykluszeit \cite{TarkianPerOelFen2011}, Masse der Antriebe \cite{ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011}, Lebensdauer der Getriebe \cite{PetterssonAndKru2005}, monetäre Kosten \cite{PetterssonAndKru2005}
-
+Common objective functions are the trajectory cycle time \cite{TarkianPerOelFen2011}, the drive train mass \cite{ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011}, the predicted life time of the gears \cite{PetterssonAndKru2005} or monetary costs \cite{PetterssonAndKru2005}.
 %Nebenbedingungen sind die Bemessungsmomente und Drehzahl von Motor und Getriebe [ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011], 
+Constraints contain at least the speed and torque limits of the components \cite {ChedmailGau1990,PetterssonOel2009,ZhouBaiHan2011}.
 
 % Mögliche zusätzliche Erweiterungen der Simulation des Systems sind eine zusätzliche Dynamik aus einem thermischen Motormodell [ChedmailGau1990] oder die Berechnung der Vorwärtsdynamik des geregelten Systems mit Betrachtung des Regelfehlers und der elektrischen Motordynamik [Padilla-GarciaCruRod2015], anstelle der reinen Betrachtung der inversen Dynamik mit Vernachlässigung regelungstechnischer Effekte.
+It is usually sufficient to regard the inverse rigid body dynamics without considering electric, thermal or control effects.
+The extension of the robot simulation within the optimization has been done for thermal dynamics in \cite{ChedmailGau1990} and for electrical and controller dynamics in \cite{Padilla-GarciaCruRod2015}.
 
 
 % Auslegung der Struktur
+The \emph{optimization of the parameters of the robot links} can be achieved with parametrized CAD-models prepared by a designer for the specific robot \cite{TarkianPerOelFen2011,ZhouBai2015} or by using geometric primitives \cite{RamirezKotOrt2017}. %  if creating CAD models is not possible in the case of a multiplicity of robot structures in a combined structural and dimensional synthesis
 % Bei Optimierung der Strukturparameter kann ebenfalls deren Masse als Zielfunktion verwendet werden [TarkianPerOelFen2011]
-
-%[ZhouBai2015]
+The most straight-forward objective function for the link optimization consists of the masses of the links.
+Constraints can be implemented by performing stress analysis on the links CAD model using FEM programs like CATIA \cite{TarkianPerOelFen2011} or Ansys \cite{ZhouBai2015}.
+The load on the links and on the motors can be calculated using multibody programs like Modelica/Dymola \cite{TarkianPerOelFen2011}, ADAMS \cite{ZhouBaiHan2011} or optimized code from symbolic calculations \cite{ChedmailGau1990} which reduces the computation time \cite{KhalilDom2002}.
 
 % Die Ansätze können weiterhin darin unterschieden werden, ob die Trajektorie im Zeitverlauf Teil der Optimierung ist [PetterssonAndKru2005], oder ob diese als konstant gegeben ist [TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015].
-
+The approaches can be separated into cases where the trajectory is part of the optimization and only start and end are given \cite{PetterssonAndKru2005,PetterssonOel2009,TarkianPerOelFen2011} and cases, where the trajectory does not change within the design optimization \cite{TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015}.
 % Bei einer zusätzlichen Optimierung der Segmentlängen ist aufgrund der Neuberechnung der inversen Kinematik auch die Neuberechnung der Trajektorie erforderlich [TarkianLunÖl2008,ZhouBai2015]
+If the kinematic parameters change in the optimization, the trajectory has to be regenerated as well \cite{TarkianLunOel2008,ZhouBai2015}, since it is usually given in task space and has to be transferred to joint space via the inverse kinematics.
 
 
 % Der Optimierungsalgorithmus zur Berücksichtigung der diskreten Entwurfsvariablen sind genetische Algorithmen [TarkianPerOelFen2011,Padilla-GarciaCruRod2015], Particle Swarm Optimierung [RamirezKotOrt2017] oder Complex-Algorithmus mit Modifikationen bezüglich der Rundung und Interpolation in der Auswahltabelle  [PetterssonAndKru2005] [ZhouBaiHan2011] oder die Interpolation der Auswahltabelle und Überführung in ein kontinuierliches Problem [ChedmailGau1990]
+For the discrete problem of selecting components of given gearbox and motor databases genetic algorithms \cite{TarkianPerOelFen2011,Padilla-GarciaCruRod2015}, particle swarm optimization \cite{RamirezKotOrt2017}, the complex-algorithm with modifications regarding rounding and interpolation of the selection database \cite{PetterssonAndKru2005,ZhouBaiHan2011} can be used.
 % Je nach Art der Annahmen über die Antriebe und Segmente ist ein rekursives Vorgehen von distalen zu proximalen Gelenken möglich [ChedmailGau1990].
+Depending on the assumptions on the placement of actuators, a recursive approach from distal to proximal joints is possible \cite{ChedmailGau1990}.
 % ...zur Berücksichtigung  der diskreten Entwurfsvariablen Complex, PSO, GA
 % ...sind Gradientenbasierte Verfahren [], Simplex [TarkianPerOelFen2011]
 
 % ...Eine Bewertung von computergenerierten Strukturen ist damit ebenfalls möglich
 
+
+
 % Kurzfassung des Beitrags des Papers
+The overview of the state of the art shows, that the field of design optimization for robot manipulators has made great progress in the last decade.
+One central element in the design optimization is the calculation of the robot dynamics, which should be implemented as efficient as possible.
 % Alle bisherigen Arbeiten zur Entwurfsoptimierung vernachlässigen die Eigenschaft der Parameterlinearität der Dynamik-Gleichungen, die hauptsächlich aus dem Bereich Parameteridentifikation bekannt ist.
+One method to improve the computation time spent on inverse dynamics calculations is to use the linearity of the dynamics equation with respect to the dynamics parameters.
+Regrouping the parameters to a minimal form allows to improve the performance even further \cite{KhalilDom2002}, which is a key to the success of parameter identification experiments.
+To the best knowledge of the author, the properties of the dynamics regressor form are not fully exploited in the design optimization community.
 %[ChedmailGau1990] nennt zwar die Nutzung der parameterlinearen Form zur Berechnung der Dynamik und geht auf die Anpassung der Parameter ein, die Ausnutzung der Parameterlinearität in der Entwurfsoptimierung wird aber nicht erwähnt. Da auch keine der folgenden Arbeiten darauf eingehen, wird dieser Aspekt in diesem Paper hervorgehoben.
+With the regressor form, it is possible to split the dynamics calculation into two parts.
+Under certain assumptions the dynamics calulcation in the design optimization process can then be performed with the multiplication of the regressor matrix and the dynamics parameter vector.
+The calculation of the regressor matrix can be done in a previous step outside the optimization loop.
 
 The contributions of this paper are
 \begin{itemize}
     % Präsentation eines Ansatzes zur schnelleren Berechnung der inversen Dynamik für die Entwurfsoptimierung von Mehrkörpersystemen, insbesondere von Manipulatoren
+    \item the presentation of an approach for a faster calculation of the inverse dynamics in the design optimization of robot manipulators,
     % Vorstellung eines Konzepts zur kombinierten Struktur- und Maßsynthese von seriellen und parallelen Robotern, Darstellung der Annahmen für die schnellere Berechnung
+    \item a concept of the combined structural and dimensional synthesis of serial and parallel robots,
     % Beispielhafte Rechnungen zum Aufzeigen der Vorteile durch das Verfahren
-    \item ...
+    \item examples on the possible reduction of the computation time for three serial robots.
 \end{itemize}
 
-The remainder of the paper is structured as follows...
-
+The remainder of the paper is structured as follows:
 % * Vorstellung des Konzepts der kombinierten Struktur- und Maßsynthese und Herleitung des Bedarfs einer effizienten Entwurfsoptimierung
+The combined structural and dimensional synthesis is briefly presented as a motivation and field of application for the proposed method in Sec.\,\ref{sec:DimSynth}.
 % * Zeigen der Eigenschaften der verwendeten Dynamikmodellierung 
+The properties of the dynamics model are summed up in Sec.\,\ref{sec:DynMdl}.
 % * Einsatz dieser Dynamikmodellierung in der Entwurfsoptimierung
 % * Überschlägige Rechnung zum Potential der Verbesserung
+The proposed improvement of the design optimization is explained in Sec.\,\ref{sec:DesOptImprove} with an estimate on the possible improvement in Sec.\,\ref{sec:Example}.
 % * Zusammenfassung
 
 \section{Combined Structural and Dimensional Synthesis}
@@ -164,6 +191,7 @@ The remainder of the paper is structured as follows...
 ...
 
 \section{Exemplary Calculations}
+\label{sec:Example}
 
 % Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
 % Für Drei Roboter: LBR, Kuka 6FG, SCARA
