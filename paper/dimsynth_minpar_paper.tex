@@ -292,23 +292,25 @@ In the following, the regressor with respect to the inertial parameters $\bm{\de
 \section{Improve the Efficiency of Design Optimizing}
 \label{sec:DesOptImprove}
 
+With the assumptions from Sec.\,\ref{sec:DimSynth} of an unchangeable task space trajectory and a separate optimization of kinematic and dynamics parameters, the presented properties of the dynamics equations from Sec.\,\ref{sec:DynMdl} can be used to improve the computation speed of the dimensional synthesis.
+
+Since the inverse kinematics can be calculated in the second loop (over the kinematics parameters) and the dynamics equations are evaluated in a third loop (of the drive train optimization), the joint space trajectory $\bm{q}(t)$ can be regarded as given in the inner loop.
+Then the property (\ref{equ:invdyn}) of linearity of the dynamics equation can be used to divide it into the calculation of the regressor matrix $\bm{\Phi}$ in the second loop and the multiplication of the regressor with the dynamics parameter vector  $\bm{\delta}$ in the third loop, as depicted in Fig.\,\ref{fig:dimsynth_dyn_plin}.
+
 % Formel: Optimierungsproblem
 % Formel: Ausklammern des Regressors aus einer Operation
 % Blockschaltbild Optimierung ohne Ausnutzung der Parameterlinearen Form
 % Blockschaltbild Optimierung mit Ausnutzung
-
-
-
-\begin{figure}[htb]
+\begin{figure}[tb]
     \input{./figures/dim_synth_dynamics_plin.pdf_tex}
     \caption{Sketch of the improved calculation of dynamics in the nestested optimization loops of dimensional synthesis.}
     \label{fig:dimsynth_dyn_plin}
 \end{figure} 
 
 
+
 %Rekapitulation der Annahme: Ist nicht möglich, wenn die Kartesische Trajektorie verändert wird und indirekt Zielfunktion der Optimierung ist [TarkianÖlFenPet2009,PetterssonOel2009,TarkianPerOelFen2011] oder Nebenbedingung [PetterssonAndKru2005] ist oder wenn die Kinematischen Längen Teil der Optimierung sind [TarkianLunÖl2008,ZhouBai2015]
 % ...oder die Nebenbedingungen beeinflusst.
-...
 
 \section{Exemplary Calculations}
 \label{sec:Example}
@@ -316,6 +318,31 @@ In the following, the regressor with respect to the inertial parameters $\bm{\de
 % Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
 % Für Drei Roboter: LBR, Kuka 6FG, SCARA
 % Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
+
+\begin{table}[tb]
+    \caption{Overview of the parameter properties and the computational effort for inverse dynamics calculation for three robot examples.}
+    \label{tab:computation}
+    \centering
+    \setlength\tabcolsep{3pt}
+    \small
+    \begin{tabular}[t]{|c|c|c|c|} 
+        \hline
+        Robot & SCARA & Ind. Robot & LWR \\
+        \hline
+        number of joint DoF  & 4 & 6 & 7 \\
+        degree of kinematic redundancy & 0 & 0 & 1 \\
+        number of kinematic parameters & 2 & 6 & 3 \\
+        number of base inertial parameters & 10 & 38 & 45 \\
+        ratio of zeros in the regressor & 19/40 & 87/228 & 124/315 \\
+        \hline
+        \# operations for one dynamics evaluation & 328 & 2078 & 3385 \\
+        \# operations for regressor multiplication & 42 & 282 & 382 \\
+        decrease using regressor multiplication & 87\,\% & 86\,\% & 89\,\% \\
+        \hline
+    \end{tabular}
+    \vspace{-0.5cm}
+\end{table}
+
 ...
 
 \section{Conclusions}
