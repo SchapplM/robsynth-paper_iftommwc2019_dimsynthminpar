@@ -1,0 +1,77 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'dim_synth_dynamics_standard.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{342.99212598bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.49586777)%
+    \put(0.21561419,0.41775246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{inverse}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.21561419,0.38026726){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{kinematics}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.5586458,0.42025158){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{inverse}}}%
+    \put(0.5586458,0.38276624){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{dynamics}}}%
+    \put(0.10373697,0.42873762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.49683684,0.25098494){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of}}}%
+    \put(0.49683684,0.21183371){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Drive Train and Link Geometry}}}%
+    \put(0.72529427,0.01990674){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{dimensional synthesis}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.26576111,0.11353902){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of}}}%
+    \put(0.26659414,0.07105558){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematic Parameters}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.44637238,0.43034443){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}(t)$}}}%
+    \put(0.56525533,0.34681738){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}, \bm{\delta})$}}}%
+    \put(0.80500367,0.42691143){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(t)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.44935424,0.34170084){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\delta}$}}}%
+    \put(0.44255954,0.38902706){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
+    \put(0.11189361,0.37415421){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{dim_synth_dynamics_standard.pdf}}%
+    \put(0.21583527,0.34866022){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}=\bm{g}(\bm{x},\bm{\varrho})$}}}%
+  \end{picture}%
+\endgroup%

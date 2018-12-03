@@ -154,8 +154,8 @@ The proposed improvement of the design optimization is explained in Sec.\,\ref{s
 %[RamirezKotOrt2015]
 % Idee der kombinierten Struktur- und Maßsynthese: Für eine gegebene Roboteraufgabe mit Freiheitsgraden und Trajektorie und Last werden alle geeigneten seriellen und parallelen Strukturen ermittelt und davon die bestgeeignesten ausgewählt.
 The synthesis of robot manipulators can be divided in two phases.
-The first phase is finding the number, kind and alignment of joints in the structural synthesis.
-To obtain a result with quantifiable performance, the dimensioning of the parameters regarding actuation, gears, link lengths and link geometry have to be defined in the dimensional synthesis.
+The first phase is finding the number, kind and alignment of joints in the \emph{structural synthesis}.
+To obtain a result with quantifiable performance, the dimensioning of the parameters regarding actuation, gears, link lengths and link geometry have to be defined in the \emph{dimensional synthesis}.
 Usually the two phases are performed separately and the choice of a structure is done by the designer.
 Combining both phases means to perform the dimensional synthesis for all possible kinematic structures for a task with given degrees of freedom and trajectory.
 This allows a comparison of the different structures with optimized dimensions for the given task \cite{RamirezKotOrt2015}.
@@ -169,24 +169,51 @@ The process is sketched in Fig.\,\ref{fig:structdimsynth}.
 
 % Dadurch wird der Vergleich einer Vielzahl von Strukturen notwendig. Z.B. 10 für 2T1R, 35 für 3T1R, 326 für 3T3R serielle Strukturen.
 % Für Parallele Strukturen ergeben sich ebenfalls eine Vielzahl an Kombinationen, wie z.B. von Gogu mit Hilfe der evolutionären Morphologie ermittelt [Gogu].
-Despite the existence of methods to reduce the number of kinematic structures from the structural synthesis to a minimum \cite{RamirezKotOrt2015}, the computational effort in the dimensional synthesis is still high.
-For serial chain robots e.\,g. with the assumption of non-redundancy and only parallel and orthogonal joints there exist 10 possible configurations for planar motions (2T1R), 35 for Schönflies motions (3T1R) and 326 for general motions (3T3R) \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
-Also for parallel robots a high number of possible structures have been found and listed in \cite{Gogu2008} and its following parts.
 
 %Dadurch, dass mehrere verschachtelte Schleifen durchlaufen werden ist die Rechenzeit relativ hoch. Besonders der Rechenaufwand für die innere Schleife ist entscheidend für die Gesamtlaufzeit des Algorithmus
+Despite the existence of methods to reduce the number of kinematic structures from the structural synthesis to a minimum \cite{RamirezKotOrt2015}, the computational effort in the dimensional synthesis is still high.
+For serial chain robots e.\,g. with the assumption of non-redundancy and only parallel and orthogonal joints there exist 10 possible configurations for planar motions (2T1R), 35 for Schönflies motions (3T1R) and 326 for general motions (3T3R) \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
+For parallel robots an even higher number of possible structures exists due to the possibility of overconstraint, non-symmetry and selection of joint actuation, which is listed in \cite{Gogu2008} and its following parts.
+
 %Nennung der Schleifen: Über alle Roboter, Über alle Kinematikparameter, Antriebs- und Segmentauslegung basierend auf inverser Dynamik zu allen Zeitschritten der Trajektorie
 % Blockschaltbild mit ungefährem Gesamtablauf
+The high computational effort required for the combined synthesis is caused by the multiplicity of optimization loops, namely from outside to inside
+\begin{enumerate}
+\item a loop over all $N_{\mathrm{S}}$ possible robot structures,
+\item the optimization of the kinematic parameters $\bm{\varrho}$ (length of links),
+\item the design optimization of the drive train and the link geometry affecting the dynamics parameters $\bm{\delta}$ and requiring the dynamics calculation in 
+\item a loop over all $N_\mathrm{T}$ sample points of the given trajectory.
+\end{enumerate}
+
+The loops 2 to 4 are summarized in Fig.\,\ref{fig:dimsynth_dyn_std}, which depicts the nested optimization loops in a block diagram that corresponds to the dimensional synthesis block of Fig.\,\ref{fig:structdimsynth}.
+There the first loop is highlighted by the depicted stacked blocks.
+The time dependent quantities end-effector pose $\bm{x}(t)$, joint coordinates $\bm{q}(t)$ and joint torque $\bm{\tau}(t)$ are assumed to contain the full time series and the needed time derivatives over all $N_\mathrm{T}$ samples of the trajectory .
+
+\begin{figure}[tb]
+    \input{./figures/dim_synth_dynamics_standard.pdf_tex}
+    \caption{Overview of the placement of inverse dynamics calculation in the nested optimization loops of dimensional synthesis.}
+    \label{fig:dimsynth_dyn_std}
+\end{figure} 
+
 % Für die Berechnung Dynamischer Leistungsmerkmale wie Gesamtmasse oder Energie (basierend auf den Gelenkmomenten) ist die Berechnung der inversen Dynamik notwendig.
+When using only kinematic performance measures like workspace or dexterity for the dimensional synthesis, the dynamics do not have to be evaluated and the third loop is not necessary, which simplifies the optimization.
+On the other hand using dynamics performance measures or when the decision for a robot structure also incorporates the possibilities of the actuation, all loops have to be taken into account.
 
 % Damit der Vergleich zwischen stark verschiedenen Strukturen mit möglichst wenigen Kennzahlen möglich ist:
 % Annahme für die Maßsynthese: Trajektorie bleibt gleich
 % Ansonsten müsste beim Vergleich der Strukturen verschiedene Kennzahlen wie Arbeitsraum, Fußabdruck, Energieverbrauch und zusätzlich die Verfahrdauer der Trajektorie einkriteriell gewichtet oder mehrkriteriell z.B. mittels Pareto-Front vergleichen werden.
 %Durch die Vorgabe der Trajektorie wird die Komplexität reduziert und die im Folgenden dargestellte Methode wäre nicht möglich.
+To reduce the computational effort, the trajectory $\bm{x}(t)$ is regarded as given and not as part of the optimization.
+This does not allow to use the point-to-point cycle time as a performance measure.
+On the upside, the comparison of different structures like serial and parallel robots is reduced in complexity and allows to use the method proposed in the latter part of the paper.
+
+
 
 \section{Properties of the Dynamics Model}
 \label{sec:DynMdl}
 
-The inverse dynamics equations are used in the design optimization of robot links and drive trains to calculate the torque on the motor and the forces and moments on the links to evaluate if the considered configuration is feasible.
+The inverse dynamics equations are used in the design optimization of robot links and drive trains as can be seen in Fig.\,\ref{fig:dimsynth_dyn_std}.
+Its purpose is to calculate the torque on the motor and the forces and moments on the links to evaluate if the considered configuration is feasible.
 Additionally, the properties of motor, gearbox and link affect the dynamics parameters and therefore the result of the equations.
 Since this paper focuses on the rigid body dynamics, other effects such as friction are neglected and the quantities of the drive train like motor torque, motor inertia and gear ratio are assumed to be included in the joint space equations and are omitted in the equations.
 This section defines the dynamics model in a nomenclature suitable to show the improvement of the design optimization in the next section and corresponds to textbook-knowledge \cite{KhalilDom2002}.
@@ -269,6 +296,15 @@ In the following, the regressor with respect to the inertial parameters $\bm{\de
 % Formel: Ausklammern des Regressors aus einer Operation
 % Blockschaltbild Optimierung ohne Ausnutzung der Parameterlinearen Form
 % Blockschaltbild Optimierung mit Ausnutzung
+
+
+
+\begin{figure}[htb]
+    \input{./figures/dim_synth_dynamics_plin.pdf_tex}
+    \caption{Sketch of the improved calculation of dynamics in the nestested optimization loops of dimensional synthesis.}
+    \label{fig:dimsynth_dyn_plin}
+\end{figure} 
+
 
 %Rekapitulation der Annahme: Ist nicht möglich, wenn die Kartesische Trajektorie verändert wird und indirekt Zielfunktion der Optimierung ist [TarkianÖlFenPet2009,PetterssonOel2009,TarkianPerOelFen2011] oder Nebenbedingung [PetterssonAndKru2005] ist oder wenn die Kinematischen Längen Teil der Optimierung sind [TarkianLunÖl2008,ZhouBai2015]
 % ...oder die Nebenbedingungen beeinflusst.
