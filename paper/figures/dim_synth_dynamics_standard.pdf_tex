@@ -49,23 +49,23 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.49586777)%
-    \put(0.21561419,0.41775246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{inverse}}}%
+    \put(0.21561419,0.41775246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dim_synth_dynamics_standard.pdf}}%
-    \put(0.21561419,0.38026726){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{kinematics}}}%
+    \put(0.21561419,0.38026726){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematics}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dim_synth_dynamics_standard.pdf}}%
-    \put(0.5586458,0.42025158){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{inverse}}}%
-    \put(0.5586458,0.38276624){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{dynamics}}}%
+    \put(0.5586458,0.42025158){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{4: Inverse}}}%
+    \put(0.5586458,0.38276624){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dynamics}}}%
     \put(0.10373697,0.42873762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics_standard.pdf}}%
-    \put(0.49683684,0.25098494){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of}}}%
-    \put(0.49683684,0.21183371){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Drive Train and Link Geometry}}}%
+    \put(0.49683684,0.24632011){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{3: Optimization of}}}%
+    \put(0.49683684,0.20716888){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Drive Train and Link Geometry}}}%
     \put(0.72529427,0.01990674){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{dimensional synthesis}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dim_synth_dynamics_standard.pdf}}%
-    \put(0.26576111,0.11353902){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of}}}%
-    \put(0.26659414,0.07105558){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematic Parameters}}}%
+    \put(0.26576111,0.10420936){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{2: Optimization of}}}%
+    \put(0.26659414,0.06172592){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematic Parameters}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dim_synth_dynamics_standard.pdf}}%
     \put(0.44637238,0.43034443){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}(t)$}}}%
-    \put(0.56525533,0.34681738){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}, \bm{\delta})$}}}%
+    \put(0.55592567,0.34681738){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}, \bm{\delta})$}}}%
     \put(0.80500367,0.42691143){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dim_synth_dynamics_standard.pdf}}%
     \put(0.44935424,0.34170084){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\delta}$}}}%
