@@ -68,15 +68,15 @@
     \put(0.33609556,0.34681738){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\Phi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho})$}}}%
     \put(0.72570156,0.42691143){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dim_synth_dynamics_plin.pdf}}%
-    \put(0.59088185,0.3727719){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\delta}$}}}%
-    \put(0.26896122,0.37586551){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
+    \put(0.59088185,0.36810707){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\delta}$}}}%
+    \put(0.26660512,0.3720369){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
     \put(0.01734876,0.37635736){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dim_synth_dynamics_plin.pdf}}%
     \put(0.68076442,0.41941863){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{inverse dynamics}}}%
     \put(0.68076442,0.38193329){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{linear form}}}%
     \put(0.68737395,0.34598443){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau} = \bm{\Phi}_{\bm{\tau}}\bm{\delta}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{dim_synth_dynamics_plin.pdf}}%
-    \put(0.58244386,0.43534238){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\Phi}(t)$}}}%
+    \put(0.58244386,0.43534238){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\Phi}_{\bm{\tau}}(t)$}}}%
     \put(0.91693382,0.43198441){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}(t)$}}}%
     \put(0.10451573,0.34571509){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}=\bm{g}(\bm{x},\bm{\varrho})$}}}%
   \end{picture}%

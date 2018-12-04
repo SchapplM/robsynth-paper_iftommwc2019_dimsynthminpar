@@ -235,15 +235,16 @@ The $10$ parameters for link $i$ are stacked in $\bm{\delta}_i$ and the paramete
 % Keine Formulierung der Dynamik auf Motorseite oder mit Getriebeübersetzung. Hinweis, dass die Umrechnung weiterhin so geschieht wie bisher, und dass die Motorträgheit mit der Getriebeübersetzung auf die Abtriebseite umgerechnet werden kann
 The joint torques $\bm{\tau}$ are calculated with the inverse dynamics model
 %
-\begin{equation}
-\bm{\tau} = 
+\begin{align}
+\bm{\tau} 
+&= 
 \bm{M}(\bm{q},\bm{\varrho},\bm{\delta}) \ddot{\bm{q}}
 + \bm{c}(\bm{q},\dot{\bm{q}},\bm{\varrho},\bm{\delta})
-+ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta})
-=
++ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta}) \label{equ:invdyn_normal} \\
+&=
 \bm{\Phi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta}
-\label{equ:invdyn}
-\end{equation}
+\label{equ:invdyn_reg}
+\end{align}
 %
 of a serial-chain robot manipulator in the joint coordinates $\bm{q}$.
 It contains the effects of inertia $\bm{M}$, centrifugal and Coriolis forces $\bm{c}$ and gravity $\bm{g}$ and is linear in the inertial parameters $\bm{\delta}$.
@@ -278,24 +279,24 @@ which shows the property of serial kinematic chains, that the inertial parameter
 % Parameterlineare Form der Dynamik
 % Prinzip der Parametergruppierung: Zusammenfassung von Parametern vom Endeffektor zur Basis
 % Zeigen anhand der Regressormatrix der Inertialparameter mit Formel. Beschreibung der rekursiven Kombinationsvorschriften und daraus resultierender ähnlicher Form für den Minimalparameter-Regressor.
-The dynamics equation (\ref{equ:invdyn}) can also be expressed with the base parameters $\bm{\beta}$.
+The dynamics equation (\ref{equ:invdyn_normal}-\ref{equ:invdyn_reg}) can also be expressed with the base parameters $\bm{\beta}$.
 These parameters are obtained with a recursive combination of inertial parameters with the same effect on the joint torque.
 Parameters without effect are removed from the parameter vector.
 Due to the recursive scheme from the end-effector link to the base link, the regressor matrix with respect to the base parameters has a similar upper triangular form as in (\ref{equ:regressor_triangular}).
 Exploiting this known structure allows further reduction of the computational load.
 
 % Für Segmentauslegung: Gelenkmomente sind allein nicht ausreichend. Bei Verwendung der Schnittkräfte in den Gelenken vor und nach dem Segment ist ebenfalls eine parameterlineare Darstellung möglich, allerdings sind durch Parameterzusammenfassung keine oder wesentlich weniger Vereinfachungen möglich als bei alleiniger Betrachtung der Gelenkmomente.
-The joint torque equation (\ref{equ:invdyn}) can be used for design optimization of the drive train.
+The joint torque equation (\ref{equ:invdyn_normal}) can be used for design optimization of the drive train.
 For the optimization of link parameters, the internal forces and moments from (\ref{equ:joint_wrench}) can be used. This equation can not be expressed with the base parameters, since all inertial parameters affect the internal forces.
 In the following, the regressor with respect to the inertial parameters $\bm{\delta}$ will be used in this paper, the base parameter regressor should however be used in the implementation wherever possible.
 
 \section{Improve the Efficiency of Design Optimizing}
 \label{sec:DesOptImprove}
 
-With the assumptions from Sec.\,\ref{sec:DimSynth} of an unchangeable task space trajectory and a separate optimization of kinematic and dynamics parameters, the presented properties of the dynamics equations from Sec.\,\ref{sec:DynMdl} can be used to improve the computation speed of the dimensional synthesis.
+With the assumptions from Sec.\,\ref{sec:DimSynth} of an unchangeable task space trajectory and a separate optimization of kinematic and dynamics parameters, the presented properties of the dynamics equations from Sec.\,\ref{sec:DynMdl} can be used to accelerate the evaluation of the dynamics equations in the dimensional synthesis.
 
-Since the inverse kinematics can be calculated in the second loop (over the kinematics parameters) and the dynamics equations are evaluated in a third loop (of the drive train optimization), the joint space trajectory $\bm{q}(t)$ can be regarded as given in the inner loop.
-Then the property (\ref{equ:invdyn}) of linearity of the dynamics equation can be used to divide it into the calculation of the regressor matrix $\bm{\Phi}$ in the second loop and the multiplication of the regressor with the dynamics parameter vector  $\bm{\delta}$ in the third loop, as depicted in Fig.\,\ref{fig:dimsynth_dyn_plin}.
+Since the inverse kinematics can be calculated in the second loop (over the kinematics parameters $\bm{\varrho}$) and the dynamics equations are evaluated in a third loop (of the drive train optimization updating $\bm{\delta}$), the joint space trajectory $\bm{q}(t)$ can be regarded as given in the inner loop.
+Then the property (\ref{equ:invdyn_reg}) of linearity of the dynamics equation can be used to divide it into the calculation of the regressor matrices $\bm{\Phi}(t)$ in the second loop and the multiplication of the regressor with the dynamics parameter vector  $\bm{\delta}$ in the third loop, as depicted in Fig.\,\ref{fig:dimsynth_dyn_plin}.
 
 % Formel: Optimierungsproblem
 % Formel: Ausklammern des Regressors aus einer Operation
@@ -315,25 +316,40 @@ Then the property (\ref{equ:invdyn}) of linearity of the dynamics equation can b
 \section{Exemplary Calculations}
 \label{sec:Example}
 
+% Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
+Using the linearity of dynamics parameters as described above reduces the computational cost of evaluating the dynamics equations down to the multiplication of the regressor matrix with the parameter vector.
+Table\,\ref{tab:computation} gives an estimate on the computational cost for the dynamics for three different robots: A 4-axis SCARA robot, an 6-dof industrial robot arm manipulator and the 7-axis DLR/Kuka Leight Weight Robot.
+The upper part of the table shows the properties of the robots kinematic and dynamics parameters and the lower part summarizes the computational cost of the dynamics using direct calculation or just the regressor multiplication.
+The data is given for the regressor matrix $\bm{\Phi}_{\bm{\tau}}$, referred to the base parameter vector $\bm{\beta}$, since this is the most efficient form.
+The code is generated by the computer algebra system \textsc{Maple} using the Lagrangian equations and the base parameter algorithm from \cite{KhalilDom2002}.
+Optimization is done by\textsc{Maple} and the number of operations contains the sum of additions, multiplications and assignments of temporary variables. % TODO: Sinus?
+The triangular form (\ref{equ:regressor_triangular}) of the regressor, which can be recognized from the ratios of zeros in the table, was also exploited in the code optimization.
+Since the calculation using a given regressor matrix is much simpler, the computational effort can be decreased in theory over 80\,\%.
+However, some aspects will reduce the savings in the practical implementation:
+\begin{itemize} 
+\item saving the $\mathrm{dim}(\bm{q}) \times \mathrm{dim}(\bm{\beta})$ regressor matrices for the full trajectory leads to additional overhead in the memory,
+\item the regressor matrix has to be computed beforehand, which will pay off more, if the dynamics are evaluated very often in the inner optimization loop. 
+\end{itemize}  
+
 % Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
 % Für Drei Roboter: LBR, Kuka 6FG, SCARA
-% Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
 
-\begin{table}[tb]
+
+\begin{table}[b]
     \caption{Overview of the parameter properties and the computational effort for inverse dynamics calculation for three robot examples.}
     \label{tab:computation}
     \centering
     \setlength\tabcolsep{3pt}
     \small
-    \begin{tabular}[t]{|c|c|c|c|} 
+    \begin{tabular}[t]{|l|c|c|c|} 
         \hline
         Robot & SCARA & Ind. Robot & LWR \\
         \hline
-        number of joint DoF  & 4 & 6 & 7 \\
-        degree of kinematic redundancy & 0 & 0 & 1 \\
-        number of kinematic parameters & 2 & 6 & 3 \\
-        number of base inertial parameters & 10 & 38 & 45 \\
-        ratio of zeros in the regressor & 19/40 & 87/228 & 124/315 \\
+        \# of joint DoF  & 4 & 6 & 7 \\
+        \# of kinematic parameters $\bm{\varrho}$ & 2 & 6 & 3 \\
+        \# of inertial parameters $\bm{\delta}$ & 40 & 60 & 70 \\
+        \# of base inertial parameters $\bm{\beta}$ & 10 & 38 & 45 \\
+        ratio of zeros in the $\bm{\beta}$-regressor $\bm{\Phi}_{\bm{\tau}}$ & 19/40 & 87/228 & 124/315 \\
         \hline
         \# operations for one dynamics evaluation & 328 & 2078 & 3385 \\
         \# operations for regressor multiplication & 42 & 282 & 382 \\
@@ -343,7 +359,6 @@ Then the property (\ref{equ:invdyn}) of linearity of the dynamics equation can b
     \vspace{-0.5cm}
 \end{table}
 
-...
 
 \section{Conclusions}
 \label{sec:Conclusion}
