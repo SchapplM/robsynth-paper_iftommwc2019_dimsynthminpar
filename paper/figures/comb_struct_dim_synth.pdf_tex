@@ -48,25 +48,27 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.24793388)%
+  \begin{picture}(1,0.18181818)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{comb_struct_dim_synth.pdf}}%
-    \put(0.02130916,0.18739886){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Robot Task}}}%
+    \put(0.02130916,0.1314209){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Robot Task}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{comb_struct_dim_synth.pdf}}%
-    \put(0.28803748,0.1840668){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Structural}}}%
+    \put(0.28337265,0.12808884){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Structural}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{comb_struct_dim_synth.pdf}}%
-    \put(0.28803748,0.1465816){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
+    \put(0.28337265,0.09060364){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{comb_struct_dim_synth.pdf}}%
-    \put(0.57975594,0.18656591){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dimensional}}}%
-    \put(0.57975594,0.14908057){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
-    \put(0.85531416,0.17990165){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Comparison}}}%
+    \put(0.57509111,0.13058796){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dimensional}}}%
+    \put(0.57509111,0.09310261){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
+    \put(0.85064933,0.12858866){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Comparison}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{comb_struct_dim_synth.pdf}}%
-    \put(0.85531416,0.14241645){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Selection}}}%
-    \put(0.01964315,0.14991366){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{DoF: $\alpha$T$\beta$R}}}%
-    \put(0.01547812,0.1090964){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Trajectory $\bm{x}(t)$}}}%
+    \put(0.85064933,0.09110318){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Selection}}}%
+    \put(0.01964315,0.0939357){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{DoF:$\alpha$T$\beta$R}}}%
+    \put(0.01547812,0.05311801){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Trajectory $\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{comb_struct_dim_synth.pdf}}%
-    \put(0.80759631,0.15023767){\color[rgb]{0,0,0}\rotatebox{-90.85132801}{\makebox(0,0)[lb]{\smash{...}}}}%
+    \put(0.81260326,0.09190469){\color[rgb]{0,0,0}\rotatebox{-90.85132796}{\makebox(0,0)[lb]{\smash{.}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{comb_struct_dim_synth.pdf}}%
-    \put(0.41432239,0.19544771){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$N_\mathrm{S}$ struc-}}}%
-    \put(0.44176973,0.15395851){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{tures}}}%
+    \put(0.41432239,0.13946975){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$N_\mathrm{S}$ struc-}}}%
+    \put(0.44176973,0.09798055){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{tures}}}%
+    \put(0.81260327,0.08035993){\color[rgb]{0,0,0}\rotatebox{-90.85132796}{\makebox(0,0)[lb]{\smash{.}}}}%
+    \put(0.81260327,0.06881474){\color[rgb]{0,0,0}\rotatebox{-90.85132796}{\makebox(0,0)[lb]{\smash{.}}}}%
   \end{picture}%
 \endgroup%

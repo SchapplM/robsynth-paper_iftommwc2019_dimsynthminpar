@@ -57,11 +57,11 @@
     \put(0.33240155,0.38110021){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Regressor Matrix}}}%
     \put(0.01660461,0.44039969){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics_plin.pdf}}%
-    \put(0.51549616,0.23232562){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{3: Optimization of}}}%
+    \put(0.51549616,0.23232562){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{3:} Optimization of}}}%
     \put(0.51549616,0.19317439){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Drive Train and Link Geometry}}}%
     \put(0.72279523,0.07072004){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{dimensional synthesis}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dim_synth_dynamics_plin.pdf}}%
-    \put(0.13681189,0.15835472){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{2: Optimization of}}}%
+    \put(0.13681189,0.15835472){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{2:} Optimization of}}}%
     \put(0.13764492,0.11587143){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematic Parameters}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dim_synth_dynamics_plin.pdf}}%
     \put(0.26444402,0.43500926){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}(t)$}}}%
@@ -72,7 +72,7 @@
     \put(0.26660512,0.3720369){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
     \put(0.01734876,0.37635736){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varrho}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dim_synth_dynamics_plin.pdf}}%
-    \put(0.67143476,0.41941863){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{4: Inverse Dynamics}}}%
+    \put(0.67143476,0.41941863){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{4:} Inverse Dynamics}}}%
     \put(0.67143476,0.38193329){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Linear Form}}}%
     \put(0.67337946,0.34598443){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau} = \bm{\Phi}_{\bm{\tau}}\bm{\delta}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{dim_synth_dynamics_plin.pdf}}%

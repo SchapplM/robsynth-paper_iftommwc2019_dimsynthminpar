@@ -51,7 +51,9 @@
 %ABSTRACT
 \begin{abstract}
 In the design optimization of robot manipulators regarding drive train and link geometries the dynamics equations have to be evaluated repeatedly.
-The method proposed in this paper uses the property of parameter linearity of the dynamics equations to reduce the computational effort in the dynamics evaluations.
+The method proposed in this paper reduce the computational effort in the dynamics evaluations by using the property of parameter linearity of the dynamics equations.
+The combined structural and dimensional synthesis of robot manipulators is adapted in a set of hierarchical optimization loops to exploit this dynamics property.
+By this means a reduction of computation time for the inverse dynamics in the synthesis of up to factor five can be expected.
 \end{abstract}
 
 %KEYWORDS
@@ -65,12 +67,13 @@ Robot Design Optimization, Dynamics Regressor Form, Combined Structural and Dime
 % Was ist Entwurfsoptimierung? Einordnung
 
 % Entwurfsoptimierung wird eingesetzt, um vom Menschen erdachte Maschinen so zu parametrieren, dass sie gestellte Anforderungen bestmöglich erfüllen.
-Design optimization formalizes the process of designing technical systems done by engineers and allows to find design parameters with optimization algorithms based on given objectives and constraints.
+Design optimization formalizes the process of designing technical systems done by engineers and allows to find values for the design parameters with optimization algorithms based on given objectives and constraints.
 % Die Parametrierung kann sich am Beispiel von Robotern auf Kinematik-Parameter wie die Längen der Segmente beziehen, auf die Auslegung der Strukturteile und auf die Auswahl und Auslegung des Antriebsstrangs.
 In the case of robotic systems the design parameters can be the lengths of the robot links, the shape of the links or the selection of the drive train components motor and gearbox.
+The parameters can be deduced from the robot structure which consists of the type and principal alignment of the robots joints and is determined in the \emph{structural synthesis} of the robot.
 
 % Abgrenzung Auslegung der Kinematikparameter und Entwurfsoptimierung
-In this paper we distinguish between the optimization of parameters with influence on the forward kinematics and the optimization of parameters only influencing other characteristics of the robot such as the dynamics.
+In this paper we distinguish between the optimization of parameters with influence on the kinematics and the optimization of parameters only influencing other characteristics of the robot such as the dynamics.
 %Ansätze für Optimierung der Kinematikparameter
 %Mehrkriterielle Optimierung von kinematischen Zielgrößen wie Arbeitsraum und Robotergröße [CeccarelliLan2004] oder zusätzlich Berücksichtigung statischer Zielgröße wie eines Steifigkeitsmodells für serielle und parallele Roboter [CarboneOttCec2007] oder dynamischer Zielgrößen, wie der über die Trajektorie verbrauchten Energie [RamirezKotOrt2017]
 The optimization of kinematic parameters is referred to as \emph{dimensional synthesis} and can be implemented as multi-criterial optimization of kinematic criteria like workspace and robot size \cite{CeccarelliLan2004}, static criteria like stiffness \cite{CarboneOttCec2007} or dynamics-based criteria like energy consumption \cite{RamirezKotOrt2017}.
@@ -93,16 +96,16 @@ The extension of the robot simulation within the optimization has been done for 
 
 
 % Auslegung der Struktur
-The \emph{optimization of the parameters of the robot links} can be achieved with parametrized CAD-models prepared by a designer for the specific robot \cite{TarkianPerOelFen2011,ZhouBai2015} or by using geometric primitives \cite{RamirezKotOrt2017}. %  if creating CAD models is not possible in the case of a multiplicity of robot structures in a combined structural and dimensional synthesis
+The \emph{optimization of the parameters of the robot links} like the engineering design can be achieved with parametrized CAD-models prepared by a designer for the specific robot \cite{TarkianPerOelFen2011,ZhouBai2015} or by using geometric primitives \cite{RamirezKotOrt2017} for approximations. %  if creating CAD models is not possible in the case of a multiplicity of robot structures in a combined structural and dimensional synthesis
 % Bei Optimierung der Strukturparameter kann ebenfalls deren Masse als Zielfunktion verwendet werden [TarkianPerOelFen2011]
 The most straight-forward objective function for the link optimization consists of the masses of the links which also correlates with energy consumption and joint torques.
 Constraints can be implemented by performing stress analysis on the links CAD model using FEM programs like CATIA \cite{TarkianPerOelFen2011} or Ansys \cite{ZhouBai2015}.
 The load on the links and on the motors can be calculated using multibody programs like Modelica/Dymola \cite{TarkianPerOelFen2011}, ADAMS \cite{ZhouBaiHan2011} or by using optimized code from symbolic calculations \cite{ChedmailGau1990} which reduces the computation \cite{KhalilDom2002}.
 
 % Die Ansätze können weiterhin darin unterschieden werden, ob die Trajektorie im Zeitverlauf Teil der Optimierung ist [PetterssonAndKru2005], oder ob diese als konstant gegeben ist [TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015].
-The approaches can be separated into cases where the trajectory is part of the optimization and only start and end are given \cite{PetterssonAndKru2005,PetterssonOel2009,TarkianPerOelFen2011} and cases, where the trajectory does not change within the design optimization \cite{TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015}.
+The approaches presented until here can be separated into cases, where the trajectory does not change within the design optimization \cite{TarkianPerOelFen2011,ZhouBaiHan2011,Padilla-GarciaCruRod2015} and cases, where the trajectory is part of the optimization and only start and end pose of the end effector are given \cite{PetterssonAndKru2005,PetterssonOel2009,TarkianPerOelFen2011}.
 % Bei einer zusätzlichen Optimierung der Segmentlängen ist aufgrund der Neuberechnung der inversen Kinematik auch die Neuberechnung der Trajektorie erforderlich [TarkianLunÖl2008,ZhouBai2015]
-If the kinematic parameters change in the optimization, the joint space trajectory has to be regenerated as well \cite{TarkianLunOel2008,ZhouBai2015}, since it is usually given in task space and has to be transferred to joint space via the inverse kinematics.
+The trajectory changes within the optimization, if it is part of the objective function or if the kinematic parameters change in the optimization \cite{TarkianLunOel2008,ZhouBai2015}, since the trajectory is usually given in task space and has to be transferred to joint space via the inverse kinematics.
 
 
 % Der Optimierungsalgorithmus zur Berücksichtigung der diskreten Entwurfsvariablen sind genetische Algorithmen [TarkianPerOelFen2011,Padilla-GarciaCruRod2015], Particle Swarm Optimierung [RamirezKotOrt2017] oder Complex-Algorithmus mit Modifikationen bezüglich der Rundung und Interpolation in der Auswahltabelle  [PetterssonAndKru2005] [ZhouBaiHan2011] oder die Interpolation der Auswahltabelle und Überführung in ein kontinuierliches Problem [ChedmailGau1990]
@@ -122,18 +125,19 @@ One central element in the design optimization is the calculation of the robot d
 % Alle bisherigen Arbeiten zur Entwurfsoptimierung vernachlässigen die Eigenschaft der Parameterlinearität der Dynamik-Gleichungen, die hauptsächlich aus dem Bereich Parameteridentifikation bekannt ist.
 One method to improve the computation time spent on inverse dynamics calculations is to use the linearity of the dynamics equation with respect to the dynamics parameters.
 Regrouping the parameters to a minimal form allows to improve the performance even further \cite{KhalilDom2002}, which is a key to the success of parameter identification experiments.
-To the best knowledge of the author, the properties of the dynamics regressor form are not fully exploited in the design optimization community.
+To the best knowledge of the authors, the properties of the dynamics regressor form are not fully exploited by the design optimization community.
 %[ChedmailGau1990] nennt zwar die Nutzung der parameterlinearen Form zur Berechnung der Dynamik und geht auf die Anpassung der Parameter ein, die Ausnutzung der Parameterlinearität in der Entwurfsoptimierung wird aber nicht erwähnt. Da auch keine der folgenden Arbeiten darauf eingehen, wird dieser Aspekt in diesem Paper hervorgehoben.
-With the regressor form, it is possible to split the dynamics calculation into two parts.
-Under certain assumptions the dynamics calulcation in the design optimization process can then be performed with the multiplication of the regressor matrix and the dynamics parameter vector.
-The calculation of the regressor matrix can be done in a previous step outside the optimization loop.
+
+With the regressor form, it is possible to split the dynamics calculation into two steps: The calculation of the regressor matrix and the  multiplication of the regressor matrix with the dynamics parameter vector.
+Under certain assumptions the dynamics calculation in the design optimization process can then be performed with the second step.
+The first step can be done outside the optimization loop, since the regressor matrix is dependent on the kinematics of the robot, which stays the same in the inner loop.
 
 The contributions of this paper are
 \begin{itemize}
     % Präsentation eines Ansatzes zur schnelleren Berechnung der inversen Dynamik für die Entwurfsoptimierung von Mehrkörpersystemen, insbesondere von Manipulatoren
     \item the presentation of an approach for a faster calculation of the inverse dynamics in the design optimization of robot manipulators,
     % Vorstellung eines Konzepts zur kombinierten Struktur- und Maßsynthese von seriellen und parallelen Robotern, Darstellung der Annahmen für die schnellere Berechnung
-    \item a concept of the combined structural and dimensional synthesis of serial and parallel robots,
+    \item a concept for the combined structural and dimensional synthesis of serial and parallel robots exploiting this dynamics formulation,
     % Beispielhafte Rechnungen zum Aufzeigen der Vorteile durch das Verfahren
     \item examples on the possible reduction of the computation time.
 \end{itemize}
@@ -145,7 +149,7 @@ The combined structural and dimensional synthesis is briefly presented as a moti
 The properties of the dynamics model are summed up in Sec.\,\ref{sec:DynMdl}.
 % * Einsatz dieser Dynamikmodellierung in der Entwurfsoptimierung
 % * Überschlägige Rechnung zum Potential der Verbesserung
-The proposed improvement of the design optimization is explained in Sec.\,\ref{sec:DesOptImprove} with an estimate on the possible improvement in Sec.\,\ref{sec:Example}.
+The possible improvement of the design optimization is explained in Sec.\,\ref{sec:DesOptImprove} with an estimate on the computational costs in Sec.\,\ref{sec:Example}.
 % * Zusammenfassung
 
 \section{Combined Structural and Dimensional Synthesis}
@@ -158,12 +162,12 @@ The first phase is finding the number, kind and alignment of joints in the \emph
 To obtain a result with quantifiable performance, the dimensioning of the parameters regarding actuation, gears, link lengths and link geometry have to be defined in the \emph{dimensional synthesis} as a second phase.
 Usually the two phases are performed separately and the choice of a structure is done by the designer.
 Combining both phases means to perform the dimensional synthesis for all possible kinematic structures for a task with given degrees of freedom and trajectory as  sketched in Fig.\,\ref{fig:structdimsynth} for the whole process.
-This allows a comparison of the different structures with optimized dimensions for the given task \cite{RamirezKotOrt2015} and to select the robot structure that is suited best.
+This allows a comparison of all $N_{\mathrm{S}}$ different structures with optimized dimensions for the given task and to select the robot structure that is suited best \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
 
 
 \begin{figure}[tb]
 	\input{./figures/comb_struct_dim_synth.pdf_tex}
-	\caption{Overview of the procedure for combined structural and dimensional synthesis}
+	\caption{Overview of the procedure for combined structural and dimensional synthesis. The degrees of freedom (DoF) of the task are given in the $\alpha\mathrm{T}\beta\mathrm{R}$-notation for the numbers of translational DoF  $\alpha$ and of rotational DoF $\beta$.}
 	\label{fig:structdimsynth}
 \end{figure} 
 
@@ -172,7 +176,7 @@ This allows a comparison of the different structures with optimized dimensions f
 
 %Dadurch, dass mehrere verschachtelte Schleifen durchlaufen werden ist die Rechenzeit relativ hoch. Besonders der Rechenaufwand für die innere Schleife ist entscheidend für die Gesamtlaufzeit des Algorithmus
 Despite the existence of methods to reduce the number of kinematic structures from the structural synthesis to a minimum \cite{RamirezKotOrt2015}, the computational effort in the dimensional synthesis is still high.
-For serial chain robots e.\,g. with the assumption of non-redundancy and only parallel and orthogonal joints there exist 10 possible configurations for planar motions (2T1R), 35 for Schönflies motions (3T1R) and 326 for general motions (3T3R) \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
+For serial chain robots e.\,g. with the assumption of non-redundancy and only parallel and orthogonal joints there exist 10 possible configurations for planar motions (2T1R), 35 for Schönflies motions (3T1R, ``SCARA'') and 326 for general motions (3T3R) \cite{RamirezKotOrt2015,RamirezKotOrt2017}.
 For parallel robots an even higher number of possible structures exists due to the possibility of overconstraint, non-symmetry and selection of joint actuation, which is listed in \cite{Gogu2008} and its following parts.
 
 %Nennung der Schleifen: Über alle Roboter, Über alle Kinematikparameter, Antriebs- und Segmentauslegung basierend auf inverser Dynamik zu allen Zeitschritten der Trajektorie
@@ -186,8 +190,8 @@ The high computational effort required for the combined synthesis is caused by t
 \end{enumerate}
 
 The loops 2 to 4 are summarized in Fig.\,\ref{fig:dimsynth_dyn_std}, which depicts the nested optimization loops in a block diagram that corresponds to the dimensional synthesis block of Fig.\,\ref{fig:structdimsynth}.
-There the first loop is highlighted by the depicted stacked blocks.
-The time dependent quantities end-effector pose $\bm{x}(t)$, joint coordinates $\bm{q}(t)$ and joint torque $\bm{\tau}(t)$ are assumed to contain the full time series and the needed time derivatives over all $N_\mathrm{T}$ samples of the trajectory.
+There, the first loop is highlighted by the depicted stacked blocks.
+The time dependent quantities end effector pose $\bm{x}(t)$, joint coordinates $\bm{q}(t)$ and joint torque $\bm{\tau}(t)$ are assumed to contain the full time series and the needed time derivatives over all $N_\mathrm{T}$ samples of the trajectory.
 
 \begin{figure}[tb]
     \input{./figures/dim_synth_dynamics_standard.pdf_tex}
@@ -205,7 +209,11 @@ On the other hand when using dynamics performance measures or when the decision 
 %Durch die Vorgabe der Trajektorie wird die Komplexität reduziert und die im Folgenden dargestellte Methode wäre nicht möglich.
 To reduce the computational effort, the trajectory $\bm{x}(t)$ is regarded as given and not as part of the optimization.
 This does not allow to use the point-to-point cycle time as a performance measure.
-On the upside, the comparison of different structures like serial and parallel robots is reduced in complexity and this allows to use the method proposed in the latter part of the paper.
+On the upside, the comparison of different structures like serial and parallel robots is reduced in complexity and it allows to use the method proposed in the latter part of the paper.
+The demand for the reduction of complexity can be justified by the fact, that serial and parallel robots have completely different characteristics regarding their performance criteria like workspace, footprint, accuracy, stiffness, energy or dynamics.
+These criteria have to be traded off against each other in a single-objective or multi-objective optimization.
+Comparing the dynamics or energy for different structures each with different time-series of the trajectory would again raise the question of how to weight these performance measures against each other.
+
 
 \section{Properties of the Dynamics Model}
 \label{sec:DynMdl}
@@ -221,33 +229,34 @@ The kinematics parameters $\bm{\varrho}$ contain the parameters from the joint t
 %
 The dynamics parameters are defined in three representations:
 \begin{itemize}
-\item The barycentric dynamics parameters consist of the link masses $m_i$, the coordinates $\ortvek{i}{r}{}{C_i}$ of the links center of mass $C_i$ (CoM)  expressed in the respective link frame and the inertia tensor $\ortvek{i}{I}{(C_i)}{}$ w.\,r.\,t the links CoM. 
+\item The barycentric dynamics parameters of each link $i$ consist of the link mass $m_i$, the three coordinates $\ortvek{i}{r}{}{C_i}$ of the links center of mass $C_i$ (CoM)  expressed in the respective link frame and six entries of the symmetric inertia tensor $\ortvek{i}{I}{(C_i)}{}$ w.\,r.\,t the links CoM. 
 \item The inertial parameters are related to the origin $O_i$ of the link frame and contain the links mass $m_i$, the first moment $m_i \ortvek{i}{r}{}{C_i}$ and the second moment $\ortvek{i}{I}{(O_i)}{}=\ortvek{i}{I}{(C_i)}{}+m_i\bm{S}^\transp(\ortvek{i}{r}{}{C_i})\bm{S}(\ortvek{i}{r}{}{C_i})$ which can be calculated with the Huygens-Steiner theorem using the skew-operator $\bm{S}$.
-The $10$ parameters for link $i$ are stacked in $\bm{\delta}_i$ and the parameters for all $N$ links are stacked in the $(10N \times 1)$ vector $\bm{\delta}$.
-\item The base inertial parameters can be obtained by combining the inertial parameters with the linear relation $\bm{\beta}=\bm{K}(\bm{\varrho})\bm{\delta}$ from a set of rules.
+The $10$ inertial parameters for link $i$ are stacked in $\bm{\delta}_i$ and the $10N$ parameters for all $N$ links are stacked in the vector $\bm{\delta}$.
+\item The base inertial parameters can be obtained by combining the inertial parameters with set of rules to the linear relation $\bm{\beta}=\bm{K}(\bm{\varrho})\bm{\delta}$.
 \end{itemize}
 %
 
 %[KhalilDom2002]
 % Dynamikmodell allgemein in verallgemeinerten Koordinaten, Grundlage für Antriebsauslegung (Modell mit Antrieb?)
 % Keine Formulierung der Dynamik auf Motorseite oder mit Getriebeübersetzung. Hinweis, dass die Umrechnung weiterhin so geschieht wie bisher, und dass die Motorträgheit mit der Getriebeübersetzung auf die Abtriebseite umgerechnet werden kann
-The joint torques $\bm{\tau}$ are calculated with the inverse dynamics model
+The joint torques $\bm{\tau}$ of a serial-chain robot manipulator are calculated with the inverse dynamics model
 %
 \begin{align}
 \bm{\tau} 
 &= 
 \bm{M}(\bm{q},\bm{\varrho},\bm{\delta}) \ddot{\bm{q}}
 + \bm{c}(\bm{q},\dot{\bm{q}},\bm{\varrho},\bm{\delta})
-+ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta}) \label{equ:invdyn_normal} \\
++ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta}) \label{equ:invdyn_normal} 
+= \bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho},\bm{\delta})\\
 &=
 \bm{\Phi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta}
 \label{equ:invdyn_reg}
 \end{align}
 %
-of a serial-chain robot manipulator in the joint coordinates $\bm{q}$.
+in the joint coordinates $\bm{q}$.
 It contains the effects of inertia $\bm{M}$, centrifugal and Coriolis forces $\bm{c}$ and gravity $\bm{g}$ and is linear in the inertial parameters $\bm{\delta}$ with the regressor matrix $\bm{\Phi}_{\bm{\tau}}$.
 
-By deriving the dynamics with the Newton-Euler-Algorithm, it is also possible to express the internal forces $\bm{f}_i$ and moments $\bm{m}_i$ in the joints in the parameter linear form
+By deriving the dynamics with the Newton-Euler-Algorithm, it is also possible to express the internal forces $\bm{f}_i$ and moments $\bm{m}_i$ in the joints $i$ in the parameter linear form
 \begin{equation}
 \bm{w}_i = 
 \begin{pmatrix} \bm{f}_i^\transp & \bm{m}_i^\transp\end{pmatrix}^\transp
@@ -258,47 +267,55 @@ By deriving the dynamics with the Newton-Euler-Algorithm, it is also possible to
 
 % Eigenschaft der Regressorform: Obere rechte Dreiecksform; die Gelenkmomente der letzten Achsen hängen nur von den letzten Dynamikparametern ab, die Gelenkmomente der ersten Achse hängen von allen Parametern ab. Dünne Besetztheit der Regressormatrix kann genutzt werden.
 The regressor matrices $\bm{\Phi}_{\bm{\tau}}$ and 
-$\bm{\Phi}_{\bm{w}}=\begin{pmatrix} \bm{\Phi}_{\bm{w}_1}^\transp & \dots & \bm{\Phi}_{\bm{w}_N}^\transp\end{pmatrix}^\transp$
+$\bm{\Phi}_{\bm{w}}$
 have the upper triangular form
 \begin{equation}
 \bm{\Phi}=
+\begin{pmatrix} \bm{\Phi}_{1} \\ \bm{\Phi}_{2} \\ \vdots \\ \bm{\Phi}_{N}
+\end{pmatrix}
+=
 \begin{pmatrix} \bm{\Phi}_{1,\bm{\delta}_1} & \bm{\Phi}_{1,\bm{\delta}_2} & \dots & \bm{\Phi}_{1,\bm{\delta}_N} \\
 \bm{0} & \bm{\Phi}_{2,\bm{\delta}_2} & \dots & \bm{\Phi}_{2,\bm{\delta}_N} \\
 \vdots & \ddots & \ddots & \vdots \\
 \bm{0} & \bm{0} & \bm{0} & \bm{\Phi}_{N,\bm{\delta}_N}
-\end{pmatrix}
+\end{pmatrix},
 \label{equ:regressor_triangular}
 \end{equation}
+where the influence of the inertial parameters of link $j$ on joint $i$ is marked by $\bm{\Phi}_{i,\bm{\delta}_j}$.
 %
-which shows the property of serial kinematic chains, that the inertial parameters of links proximal to the base have no influence on distal joints.
+This shows the property of serial kinematic chains, that the inertial parameters of links proximal to the robot base have no influence on distal joints.
 
 % Parameterlineare Form der Dynamik
 % Prinzip der Parametergruppierung: Zusammenfassung von Parametern vom Endeffektor zur Basis
 % Zeigen anhand der Regressormatrix der Inertialparameter mit Formel. Beschreibung der rekursiven Kombinationsvorschriften und daraus resultierender ähnlicher Form für den Minimalparameter-Regressor.
-The dynamics equation (\ref{equ:invdyn_normal}-\ref{equ:invdyn_reg}) can also be expressed with the base parameters $\bm{\beta}$.
+The dynamics equation (\ref{equ:invdyn_normal}-\ref{equ:invdyn_reg}) can also be expressed with the base\footnote{``base'' refers to the minimal set of parameters in the mathematical sense.} inertial parameters $\bm{\beta}$.
 These parameters are obtained with a recursive combination of inertial parameters with the same effect on the joint torque.
 Parameters without effect are removed from the parameter vector.
-Due to the recursive scheme from the end-effector link to the base link, the regressor matrix with respect to the base parameters has a similar upper triangular form as in (\ref{equ:regressor_triangular}).
+Due to the recursive scheme from the end-effector link to the base link, the regressor matrix with respect to the base inertial parameters has a similar upper triangular form as in (\ref{equ:regressor_triangular}).
 Exploiting this known structure allows further reduction of the computational load.
 
 % Für Segmentauslegung: Gelenkmomente sind allein nicht ausreichend. Bei Verwendung der Schnittkräfte in den Gelenken vor und nach dem Segment ist ebenfalls eine parameterlineare Darstellung möglich, allerdings sind durch Parameterzusammenfassung keine oder wesentlich weniger Vereinfachungen möglich als bei alleiniger Betrachtung der Gelenkmomente.
 The joint torque equation (\ref{equ:invdyn_normal}) can be used for design optimization of the drive train.
 For the optimization of link parameters, the full internal forces and moments from (\ref{equ:joint_wrench}) should be used.
-Equation (\ref{equ:joint_wrench}) can not be expressed with the base parameters, since all inertial parameters affect the internal forces.
-In the following, the regressor with respect to the inertial parameters $\bm{\delta}$ will be used in this paper for the sake of simplicity, the base parameter regressor should however be used in the implementation wherever possible.
+Equation (\ref{equ:joint_wrench}) can not be expressed with the base parameters, since all inertial parameters affect the internal forces and no parameter reduction is possible.
+In the following, the regressor with respect to the inertial parameters $\bm{\delta}$ will be used in this paper for the sake of simplicity.
+The base parameter regressor should however be used in the implementation wherever possible, since it is more efficient.
 
-The dynamics of parallel robots can also be expressed in a regressor form, since it can be derived by projection of the legs dynamics into the task space.
+The equations and remarks above refer to serial robots.
+The dynamics of parallel robots can also be expressed in a regressor form, since it can be derived by projection of the legs and platform dynamics into the task space.
 Grouping the parameters to a set of base inertial parameters again allows the reduction of the complexity.
 The scheme described in the following section can therefore also be applied to parallel robots.
+
+\newpage
 
 \section{Improve the Efficiency of Design Optimizing}
 \label{sec:DesOptImprove}
 
 With the assumptions from Sec.\,\ref{sec:DimSynth} of an unchangeable task space trajectory and a separate optimization of kinematic and dynamics parameters, the presented properties of the dynamics equations from Sec.\,\ref{sec:DynMdl} can be used to accelerate the evaluation of the dynamics equations in the dimensional synthesis.
 
-Since the inverse kinematics can be calculated in the second loop (over the kinematics parameters $\bm{\varrho}$) and the dynamics equations are evaluated in a third loop (of the drive train optimization updating $\bm{\delta}$), the joint space trajectory $\bm{q}(t)$ can be regarded as given in the inner loop.
-Then the property (\ref{equ:invdyn_reg}) of linearity of the dynamics equation can be used to divide it into the calculation of the regressor matrices $\bm{\Phi}(t)$ in the second loop and the multiplication of the regressor with the dynamics parameter vector  $\bm{\delta}$ in the third loop, as depicted in Fig.\,\ref{fig:dimsynth_dyn_plin}.
-The regressor $\bm{\Phi}_{\bm{w}}$ for the full internal forces $\bm{w}$ from (\ref{equ:joint_wrench}) can be used in the same manner and is left out in the Fig.\,\ref{fig:dimsynth_dyn_plin} for clarity.
+Since the inverse kinematics can be calculated in the second loop (over the kinematics parameters $\bm{\varrho}$) and the dynamics equations are evaluated in a third loop (of the drive train optimization updating $\bm{\delta}$), the joint space trajectory $\bm{q}(t)$ can be regarded as given in the third loop.
+Then, as depicted in Fig.\,\ref{fig:dimsynth_dyn_plin}, the property (\ref{equ:invdyn_reg}) of linearity of the dynamics equation can be used to divide it into the calculation of the regressor matrices $\bm{\Phi}(t)$ in the second loop and the multiplication of the regressor with the dynamics parameter vector  $\bm{\delta}$ in the third loop.
+The regressor $\bm{\Phi}_{\bm{w}}$ for the full internal forces $\bm{w}$ from (\ref{equ:joint_wrench}) can be used in the same manner and is omitted in Fig.\,\ref{fig:dimsynth_dyn_plin} for clarity.
 
 % Formel: Optimierungsproblem
 % Formel: Ausklammern des Regressors aus einer Operation
@@ -306,7 +323,7 @@ The regressor $\bm{\Phi}_{\bm{w}}$ for the full internal forces $\bm{w}$ from (\
 % Blockschaltbild Optimierung mit Ausnutzung
 \begin{figure}[tb]
     \input{./figures/dim_synth_dynamics_plin.pdf_tex}
-    \caption{Sketch of the improved calculation of dynamics in the nestested optimization loops of dimensional synthesis.}
+    \caption{Sketch of the improved calculation of dynamics in the nestested optimization loops of dimensional synthesis. The numbers of the loops are referenced in the text.}
     \label{fig:dimsynth_dyn_plin}
 \end{figure} 
 
@@ -320,19 +337,20 @@ The regressor $\bm{\Phi}_{\bm{w}}$ for the full internal forces $\bm{w}$ from (\
 
 % Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
 Using the linearity of dynamics parameters as described above reduces the computational cost of evaluating the dynamics equations down to the multiplication of the regressor matrix with the parameter vector.
-The effort to calculate the matrix is neglected assuming a sufficient number of iterations in the inner loop.
-Table\,\ref{tab:computation} gives an estimate on the computational cost for the dynamics of three different robots: A 4-DoF SCARA robot, a 6-DoF industrial robot arm manipulator and the 7-DoF DLR/Kuka Light Weight Robot.
-The upper part of Table\,\ref{tab:computation} shows the properties of the robots kinematic and dynamics parameters and the lower part summarizes the computational cost of the dynamics using direct calculation in one case and solely the regressor multiplication in the second case.
-The data is given for the regressor matrix $\bm{\Phi}_{\bm{\tau}}$, referred to the base parameter vector $\bm{\beta}$, since this is the most efficient form.
+The effort to calculate the matrix is neglected assuming a sufficient number of iterations in the third loop.
+Table\,\ref{tab:computation} gives an estimate on the computational cost for the dynamics of three different serial chain robots: A 4-DoF SCARA robot, a 6-DoF industrial robot arm manipulator and the 7-DoF DLR/Kuka Light Weight Robot.
+The upper part of Table\,\ref{tab:computation} shows the properties of the robots kinematic and dynamics parameters and the lower part summarizes the computational cost of the dynamics using direct calculation from the right-hand side of (\ref{equ:invdyn_normal}) in one case and solely the regressor multiplication of (\ref{equ:invdyn_reg}) in the second case.
+Both calculations are implemented using the base parameter regressor form and all possible optimizations to ensure a fair comparison.
+%The data is given for the regressor matrix $\bm{\Phi}_{\bm{\tau}}$, referred to the base parameter vector $\bm{\beta}$, since this is the most efficient form.
 The code is generated by the computer algebra system \textsc{Maple} using the Lagrangian equations and the base parameter algorithm from \cite{KhalilDom2002}.
-Optimization is done by \textsc{Maple}, also exploiting the triangular form (\ref{equ:regressor_triangular}) of the regressor, which can be recognized from the ratios of zeros given in the table.
+Code optimization is done by \textsc{Maple}, also exploiting the triangular form (\ref{equ:regressor_triangular}) of the regressor, which can be recognized from the ratios of zeros given in the table.
 The number of operations contains the sum of additions, multiplications and assignments of temporary variables. % TODO: Sinus?
 
 Since the calculation using a given regressor matrix is much simpler, the computational effort can be decreased in theory over 80\,\%.
 However, some aspects will reduce the savings in the practical implementation:
 \begin{itemize} 
 \item Saving the $\mathrm{dim}(\bm{q}) \times \mathrm{dim}(\bm{\beta})$ regressor matrices for all $N_\mathrm{T}$ trajectory samples leads to additional overhead in the memory access,
-\item the regressor matrix has to be computed beforehand, which will pay off more, if the dynamics are evaluated very often in the inner optimization loop. This is not included in the table.
+\item the regressor matrix has to be computed beforehand, which will pay off more, if the dynamics are evaluated very often in the inner optimization loop.
 \end{itemize}  
 
 % Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
@@ -340,7 +358,7 @@ However, some aspects will reduce the savings in the practical implementation:
 
 
 \begin{table}[tb]
-    \caption{Overview of the parameter properties and the computational effort for inverse dynamics calculation for three robot examples.}
+    \caption{Overview of the parameter properties and the computational effort for inverse dynamics calculation for three serial robot examples.}
     \label{tab:computation}
     \centering
     \setlength\tabcolsep{3pt}
@@ -349,10 +367,10 @@ However, some aspects will reduce the savings in the practical implementation:
         \hline
         Robot & SCARA & Ind. Robot & LWR \\
         \hline
-        \# of joint DoF  & 4 & 6 & 7 \\
-        \# of kinematic parameters $\bm{\varrho}$ & 2 & 6 & 3 \\
-        \# of inertial parameters $\bm{\delta}$ & 40 & 60 & 70 \\
-        \# of base inertial parameters $\bm{\beta}$ & 10 & 38 & 45 \\
+        $\mathrm{dim}(\bm{q})$: number (\#) of joint DoF  & 4 & 6 & 7 \\
+        $\mathrm{dim}(\bm{\varrho})$: \# of kinematic parameters & 2 & 6 & 3 \\
+        $\mathrm{dim}(\bm{\delta})$: \# of inertial parameters & 40 & 60 & 70 \\
+        $\mathrm{dim}(\bm{\beta})$: \# of base inertial parameters\footnotemark  & 10 & 38 & 45 \\
         ratio of zeros in the $\bm{\beta}$-regressor $\bm{\Phi}_{\bm{\tau}}$ & 19/40 & 87/228 & 124/315 \\
         \hline
         \# operations for one dynamics evaluation & 328 & 2078 & 3385 \\
@@ -362,8 +380,7 @@ However, some aspects will reduce the savings in the practical implementation:
     \end{tabular}
     \vspace{-0.5cm}
 \end{table}
-
-
+\footnotetext{Assuming floor mounting with fixed direction of gravity instead of the chosen general direction of gravity allows further simplifications with the parameter reduction.}
 \section{Conclusions}
 \label{sec:Conclusion}
 
