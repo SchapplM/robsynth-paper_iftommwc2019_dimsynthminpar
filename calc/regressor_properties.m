@@ -48,7 +48,30 @@ for i = 1:size(TSS.Q,1)
   tau_regmin_mask = tau_regmin_mask + abs(tau_regmin);
   tau_reg2_mask = tau_reg2_mask + abs(tau_reg2);
 end
-
+I_reg2 = tau_reg2_mask ~= 0;
+I_regmin = tau_regmin_mask ~= 0;
+% Alles links von einer "eins" in dem Index-Vektor muss auch eine Eins
+% sein (strukturell). Wenn dort eine "Null" steht, liegt es an der
+% Besonderheit des Systems
+for i = 1:size(I_reg2,1)
+  II_set_i = find(I_reg2(i,:));
+  first1 = II_set_i(1);
+  I_reg2(i, first1:end) = true;
+  % das gleiche für Minimalparameter-Regressor
+  IImin_set_i = find(I_regmin(i,:));
+  first1min = IImin_set_i(1);
+  I_regmin(i, first1min:end) = true;
+end
+figure(1);clf;hold on;grid on;
+title(sprintf('%s: Belegung der MinPar-Regressormatrix', robot_name));
+II = 1:size(I_regmin,2);
+for i = 1:size(I_regmin,1)
+  plot(II(I_regmin(i,:)==1), i, 'kx');
+  if any(I_regmin(i,:)==0)
+    plot(II(I_regmin(i,:)==0), i, 'ro');
+  end
+end
+xlabel('Eintrag #'); ylabel('Achse #');
 num_reg2_zero = sum( tau_reg2_mask(:) == 0 );
 
 num_regmin_zero = sum( tau_regmin_mask(:) == 0 )
