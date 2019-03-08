@@ -54,7 +54,7 @@
     \put(0.09899344,0.38493209){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematics}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dim_synth_dynamics_plin.pdf}}%
     \put(0.32990254,0.42025158){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse Dynamics}}}%
-    \put(0.33240155,0.38110021){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Regressor Matrix}}}%
+    \put(0.32993169,0.38110021){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Regressor Matrix}}}%
     \put(0.01660461,0.44039969){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics_plin.pdf}}%
     \put(0.51549616,0.23232562){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{3:} Optimization of}}}%

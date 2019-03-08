@@ -3,12 +3,13 @@
 This paper presents a method to reduce the cost of computations repeated in the optimal design including structural and dimensional analysis of serial robots. Focusing on the linearity of the inertial parameters in the equation of motion, cost reduction of computations for changing the values of inertial parameters was achieved. Demonstrative examples for serial robots show the effectiveness of the proposed method.
 
 The reviewer suggests the authors to revise the paper according to the following points:
-* [_] If the proposed method is applicable only to serial robots, this fact and the reason of this limitation should be discussed or mentioned in the earlier place than the end of chapter 3.
+* [x] If the proposed method is applicable only to serial robots, this fact and the reason of this limitation should be discussed or mentioned in the earlier place than the end of chapter 3.
   * Es geht prinzipiell auch für PKM, aber der volle Vereinfachungsgrad (über die Dreieckform) geht dort nicht. Weiter ausführen.
 
-* [_] It is hard to understand the correspondence of Eq. (4) to \\phi_{tau} and \\phi_{w}.
-  * Beispiel nennen: Industrieroboter?
-  * Dimensionen hinschreiben?
+* [x] It is hard to understand the correspondence of Eq. (4) to \\phi_{tau} and \\phi_{w}.
+  * Beispiel nennen: Industrieroboter? -> gemacht
+  * Dimensionen hinschreiben? Passt nicht so richtig
+  * Den Teil weiter ausgeführt
 
 # Review 2 (26.02.)
 
@@ -27,5 +28,5 @@ This paper proposes an improved method for the calculation of robots inverse dyn
 The article presents a method to reduce computational effort in dynamic evaluations by exploding the properties of the dynamics regressor form in design optimization. A method not fully exploited by the community.
 The topic is very interesting and application to some robots are described in results.
 
-* [_] Any way some important comparative results are missing. Some simulation times and comparisons should be included showing the real advantage of the proposed method.
+* [x] Any way some important comparative results are missing. Some simulation times and comparisons should be included showing the real advantage of the proposed method.
   * Simulative Beispielrechnung geht auch ohne implementierte Maßsynthese. Beispiel zeigen.
