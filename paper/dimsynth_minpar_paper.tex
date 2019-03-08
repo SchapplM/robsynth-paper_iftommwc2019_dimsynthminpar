@@ -1,7 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
 \documentclass{svproc}
-
+\usepackage{paralist}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \newcommand{\bm}[1]{\boldsymbol{#1}}
@@ -135,14 +135,14 @@ Under certain assumptions the dynamics calculation in the design optimization pr
 The first step can be done outside the optimization loop, since the regressor matrix is dependent on the kinematics of the robot, which stays the same in the inner loop.
 
 The contributions of this paper are
-\begin{itemize}
+\begin{compactitem}
     % Präsentation eines Ansatzes zur schnelleren Berechnung der inversen Dynamik für die Entwurfsoptimierung von Mehrkörpersystemen, insbesondere von Manipulatoren
     \item the presentation of an approach for a faster calculation of the inverse dynamics in the design optimization of robot manipulators,
     % Vorstellung eines Konzepts zur kombinierten Struktur- und Maßsynthese von seriellen und parallelen Robotern, Darstellung der Annahmen für die schnellere Berechnung
     \item a concept for the combined structural and dimensional synthesis of serial and parallel robots exploiting this dynamics formulation,
     % Beispielhafte Rechnungen zum Aufzeigen der Vorteile durch das Verfahren
     \item examples on the possible reduction of the computation time.
-\end{itemize}
+\end{compactitem}
 
 The remainder of the paper is structured as follows:
 % * Vorstellung des Konzepts der kombinierten Struktur- und Maßsynthese und Herleitung des Bedarfs einer effizienten Entwurfsoptimierung
@@ -184,12 +184,12 @@ An even higher number of parallel robot structures exists due to the possibility
 %Nennung der Schleifen: Über alle Roboter, Über alle Kinematikparameter, Antriebs- und Segmentauslegung basierend auf inverser Dynamik zu allen Zeitschritten der Trajektorie
 % Blockschaltbild mit ungefährem Gesamtablauf
 The high computational effort required for the combined synthesis is caused by the multiplicity of optimization loops, namely from outside to inside
-\begin{enumerate}
+\begin{compactenum}
 \item a loop over all $N_{\mathrm{S}}$ possible robot structures,
 \item the optimization of the kinematic parameters $\bm{\varrho}$ (length of links),
 \item the design optimization of the drive train and the link geometry affecting the dynamics parameters $\bm{\delta}$ and requiring the dynamics calculation in 
 \item a loop over all $N_\mathrm{T}$ sample points of the given trajectory.
-\end{enumerate}
+\end{compactenum}
 
 The loops 2 to 4 are summarized in Fig.\,\ref{fig:dimsynth_dyn_std}, which depicts the nested optimization loops in a block diagram that corresponds to the dimensional synthesis block of Fig.\,\ref{fig:structdimsynth}.
 There, the first loop is highlighted by the depicted stacked blocks.
@@ -230,12 +230,12 @@ To investigate the influence of the kinematic and dynamics parameters, the param
 The kinematics parameters $\bm{\varrho}$ contain the parameters from the joint transformations according to the modified Denavit-Hartenberg notation and are e.\,g. the lengths of the links.
 %
 The dynamics parameters are defined in three representations:
-\begin{itemize}
+\begin{compactitem}
 \item The barycentric dynamics parameters of each link $i$ consist of the link mass $m_i$, the three coordinates $\ortvek{i}{r}{}{C_i}$ of the links center of mass $C_i$ (CoM)  expressed in the respective link frame and six entries of the symmetric inertia tensor $\ortvek{i}{I}{(C_i)}{}$ w.\,r.\,t the links CoM. 
 \item The inertial parameters are related to the origin $O_i$ of the link frame and contain the links mass $m_i$, the first moment $m_i \ortvek{i}{r}{}{C_i}$ and the second moment $\ortvek{i}{I}{(O_i)}{}=\ortvek{i}{I}{(C_i)}{}+m_i\bm{S}^\transp(\ortvek{i}{r}{}{C_i})\bm{S}(\ortvek{i}{r}{}{C_i})$ which can be calculated with the Huygens-Steiner theorem using the skew-operator $\bm{S}$.
 The $10$ inertial parameters for link $i$ are stacked in $\bm{\delta}_i$ and the $10N$ parameters for all $N$ links are stacked in the vector $\bm{\delta}$.
 \item The base inertial parameters can be obtained by combining the inertial parameters with set of rules to the linear relation $\bm{\beta}=\bm{K}(\bm{\varrho})\bm{\delta}$.
-\end{itemize}
+\end{compactitem}
 %
 
 %[KhalilDom2002]
@@ -339,23 +339,25 @@ The regressor $\bm{\Phi}_{\bm{w}}$ for the full internal forces $\bm{w}$ from (\
 
 % Aussage: Bei Verwendung des Ausklammerns der Dynamikgleichungen kann man ...% der Rechenzeit sparen.
 Using the linearity of dynamics parameters as described above reduces the computational cost of evaluating the dynamics equations down to the multiplication of the regressor matrix with the parameter vector.
-The effort to calculate the matrix is neglected assuming a sufficient number of iterations in the third loop.
-Table\,\ref{tab:computation} gives an estimate on the computational cost for the dynamics of three different serial chain robots: A 4-DoF SCARA robot, a 6-DoF industrial robot arm manipulator and the 7-DoF DLR/Kuka Light Weight Robot.
-The upper part of Table\,\ref{tab:computation} shows the properties of the robots kinematic and dynamics parameters and the lower part summarizes the computational cost of the dynamics using direct calculation from the right-hand side of (\ref{equ:invdyn_normal}) in one case and solely the regressor multiplication of (\ref{equ:invdyn_reg}) in the second case.
+%The effort to calculate the matrix is neglected assuming a sufficient number of iterations in the third loop.
+Table\,\ref{tab:computation} gives an estimate on the computational cost for the dynamics of three different serial chain robots: A 4-DoF SCARA robot, a 6-DoF industrial robot arm manipulator and the 7-DoF DLR/Kuka Light Weight Robot (LWR).
+The upper part of Table\,\ref{tab:computation} shows the properties of the robots kinematic and dynamics parameters (rows ``A''-``D'').
+The lower part summarizes the computational cost of the dynamics using direct calculation from the right-hand side of (\ref{equ:invdyn_normal}) in one case (row ``G'') and solely the regressor multiplication of (\ref{equ:invdyn_reg}) in the second case (row ``H'').
 Both calculations are implemented using the base parameter regressor form and all possible optimizations to ensure a fair comparison.
 %The data is given for the regressor matrix $\bm{\Phi}_{\bm{\tau}}$, referred to the base parameter vector $\bm{\beta}$, since this is the most efficient form.
-The dynamics equations are implemented in \textsc{Matlab} function files, which can be compiled for faster execution and are able to run on real-time controllers like PLC or Simulink-based testbeds.
-The code is generated by the computer algebra system \textsc{Maple} using generalized joint coordinates, kinematics based on homogenous transformation matrices and velocity equations, a formulation of the energy of the multy body system w.r.t. the inertial dynamics parameters, the Lagrangian equations of the second kind and a base parameter regrouping algorithm, see \cite{KhalilDom2002}.
-Code optimization is done by \textsc{Maple}, also exploiting the triangular form (\ref{equ:regressor_triangular}) of the regressor, which can be recognized from the ratios of zeros given in the table.
-Further details are omitted at this place due to space limitations and the focus of the paper on the dimensional synthesis.
+The dynamics equations are implemented as \textsc{Matlab} functions, which are compiled for faster execution.
+% and are able to run on real-time controllers like PLC or Simulink-based testbeds.
+The code is generated by the computer algebra system \textsc{Maple} using generalized joint coordinates, kinematics based on homogenous transformation matrices, a formulation of the energy of the multy body system w.r.t. the inertial dynamics parameters, the Lagrangian equations of the second kind and a base parameter regrouping algorithm, see \cite{KhalilDom2002}.
+Code optimization is done by \textsc{Maple}, also exploiting the sparsity of the triangular form (\ref{equ:regressor_triangular}) of the regressor, which can be recognized from the ratios of zeros given in table row ``E''.
+%Further details are omitted at this place due to space limitations and the focus of the paper on the dimensional synthesis.
 The number of operations in the table contains the unweighted sum of the number of additions, multiplications and assignments of temporary variables.
 
-Since the calculation using a given regressor matrix is much simpler, the computational effort can be decreased in theory over 80\,\%.
-However, some aspects will reduce the savings in the practical implementation:
-\begin{itemize} 
+Since the calculation using a given regressor matrix is much simpler, the computational effort can be decreased in theory over 80\,\%, as highlighted in table row ``I''.
+However, some aspects reduce the savings in the practical implementation:
+\begin{compactitem} 
 \item Saving the $\mathrm{dim}(\bm{q}) \times \mathrm{dim}(\bm{\beta})$ regressor matrices for all $N_\mathrm{T}$ trajectory samples leads to additional overhead in the memory access,
 \item the regressor matrix has to be computed beforehand, which will pay off more, if the dynamics are evaluated very often in the inner optimization loop.
-\end{itemize}  
+\end{compactitem}  
 
 % Tabelle mit EE-FG, Anzahl Gelenke, Anzahl Kinematikparameter, Dimension Regressor, Anzahl Nullen, Operationen Dynamik aus Regressor, Operationen Matrix-Multiplikation.
 % Für Drei Roboter: LBR, Kuka 6FG, SCARA
@@ -367,26 +369,57 @@ However, some aspects will reduce the savings in the practical implementation:
     \centering
     \setlength\tabcolsep{3pt}
     \small
-    \begin{tabular}[t]{|l|c|c|c|} 
+    \begin{tabular}[t]{|l||l|c|c|c|} 
         \hline
-        Robot & SCARA & Ind. Robot & LWR \\
+         & Robot & SCARA & Ind. Robot & LWR \\
         \hline
-        $\mathrm{dim}(\bm{q})$: number (\#) of joint DoF  & 4 & 6 & 7 \\
-        $\mathrm{dim}(\bm{\varrho})$: \# of kinematic parameters & 2 & 6 & 3 \\
-        $\mathrm{dim}(\bm{\delta})$: \# of inertial parameters & 40 & 60 & 70 \\
-        $\mathrm{dim}(\bm{\beta})$: \# of base inertial parameters\footnotemark  & 10 & 38 & 45 \\
-        ratio of zeros in the $\bm{\beta}$-regressor $\bm{\Phi}_{\bm{\tau}}$ & 19/40 & 87/228 & 124/315 \\
+        A & $\mathrm{dim}(\bm{q})$: number (\#) of joint DoF  & 4 & 6 & 7 \\
+        B & $\mathrm{dim}(\bm{\varrho})$: \# of kinematic parameters & 2 & 6 & 3 \\
+        C & $\mathrm{dim}(\bm{\delta})$: \# of inertial parameters & 40 & 60 & 70 \\
+        D & $\mathrm{dim}(\bm{\beta})$: \# of base inertial parameters  & 10 & 38 & 45 \\ %\footnotemark
+        E & ratio of zeros in the $\bm{\beta}$-regressor $\bm{\Phi}_{\bm{\tau}}$ & 19/40 & 87/228  & 124/315 \\
+        &  &  = 48\,\% &  = 38\,\% &  = 39\,\% \\
         \hline
-        \# operations for one dynamics evaluation & 328 & 2078 & 3385 \\
-        \# operations for regressor multiplication & 42 & 282 & 382 \\
-        decrease using regressor multiplication & 87\,\% & 86\,\% & 89\,\% \\
+        F & \# of operations for one regressor evaluation & 327 & 1796 & 3003 \\
+        \hline
+        G & \# of operations for one dynamics evaluation & 328 & 2078 & 3385 \\
+        H & \# of operations for regressor multiplication & 42 & 282 & 382 \\
+        I & decrease using regressor multiplication & 87\,\% & 86\,\% & 89\,\% \\
         \hline
     \end{tabular}
     \vspace{-0.5cm}
 \end{table}
-\footnotetext{Assuming floor mounting with fixed direction of gravity instead of the chosen general direction of gravity allows further simplifications with the parameter reduction.}
+%\footnotetext{Assuming floor mounting with fixed direction of gravity instead of the chosen general direction of gravity allows further simplifications with the parameter reduction.}
+
+The reduction of computation time is evaluated at the example of one loop of the dimensional synthesis (block ``2'' in Fig.\,\ref{fig:dimsynth_dyn_std} and Fig.\,\ref{fig:dimsynth_dyn_plin}) for the three serial chain robots of Table\,\ref{tab:computation}.
+The computation time on the vertical axis is plotted for different numbers of dynamics parameters iterations in the design optimization of the actuators(block ``3'' in Fig.\,\ref{fig:dimsynth_dyn_plin}).
+% TODO: actuation, only joint torque
+The time for the calculation of the joint torque regressor matrix (\ref{equ:regressor_triangular}) is added to the time needed for the multiplication in  (\ref{equ:invdyn_reg}) of all dynamics parameter iterations and is marked as ``RegMult''.
+The direct calculation of the inverse dynamics of (\ref{equ:invdyn_normal}) or of block ``3''/``4'' of Fig.\,\ref{fig:dimsynth_dyn_std} is marked as ``InvDyn''.
+
+The left part of Fig.\,\ref{fig:timing_evaluation} shows the absolute computation time of the inverse dynamics for a complete joint trajectory with $N_{\mathrm{T}}{=}1000$ samples.
+%
+The ``RegMult''-method (dashed lines in Fig.\,\ref{fig:timing_evaluation}, left) already outperforms the ``InvDyn''-method at five or more iterations of the dynamics parameters.
+This can be explained by the low computational cost of the regressor matrix, listed in row ``F'' of Table\,\ref{tab:computation}, which is approximately as high as one dynamics evaluation.
+Since the sparsity of the regressor matrix is exploited by the symbolic optimizations in the ``InvDyn''-method, it was also implemented for the ``RegMult''-method by storing only the non-zero elements of the matrix as one row vector per time step.
+%To ensure a fair comparison, the sparsity of the regressor matrix was also exploited for the matrix-vector-multiplication, by storing only the non-zero elements of the matrix as one row vector per time step.
+
+The influence of the length of the trajectory is investigated with the right part of Fig.\,\ref{fig:timing_evaluation} at the example of the 7-DoF LWR.
+The ratios of the computation times for ``RegMult'' and ``InvDyn'' are compared for different lengths of the trajectory.
+The ``RegMult''-method is faster, if the line is below 100\,\%.
+%, which is the case for more than five dynamics iterations.
+The method benefits from a higher number of trajectory samples, which converges to a time reduction of 70\,\% for $N_{\mathrm{T}}>100$ and more than 50 dynamics iterations.
+
+\begin{figure}[tb]
+    \includegraphics{./figures/dyn_timing_eval.pdf}
+    \caption{Left: Comparison of the computation time for inverse dynamics for three robots and two methods. Right: Ratio of the computation times for different trajectory lengths.}
+    \label{fig:timing_evaluation}
+\end{figure} 
+
+
 \section{Conclusions}
 \label{sec:Conclusion}
+
 
 % Vorstellung des Verfahrens zur Ausnutzung ...
 % Ausblick: Anwendung des Verfahrens zum Vergleich von seriellen und parallelen Robotern in der kombinierten Struktur- und Maßsynthese.
@@ -394,7 +427,7 @@ However, some aspects will reduce the savings in the practical implementation:
 This paper presents an optimization scheme to select robot manipulators for a given task in a combined structural and dimensional synthesis.
 The optimization required to find the best suitable manipulator consists of nested loops of selecting different structures, optimizing kinematic parameters and optimizing dynamics parameters via design optimization of drive train and link properties.
 The loops are arranged in a way to improve the efficiency of the whole process by exploiting the parameter linearity of the dynamics equations.
-
+\newpage
 \section*{Acknowledgements}
 
 The financial support from the Deutsche Forschungsgemeinschaft (DFG) under grant number OR 196/33-1 is gracefully acknowledged.
