@@ -2,3 +2,4 @@
 *.mex*
 *.fig
 codegen
+*.mat
