@@ -7,24 +7,25 @@ clear
 clc
 
 %% Init 1
+addpath('/home/schappler/IMES/REPO/maple/codeexport/S4RRPR1/testfcn');
 addpath('/home/schappler/IMES/REPO/maple/codeexport/S6RRRRRR10/testfcn');
 addpath('/home/schappler/IMES/REPO/maple/codeexport/S7RRRRRRR1/testfcn');
 addpath('/home/schappler/IMES/REPO/maple/codeexport/kuka6dof/matlabfcn');
 addpath('/home/schappler/IMES/REPO/maple/codeexport/kuka6dof/testfcn');
 %% Benutzereingabe
 
-% robot_name = 'S4RRPR1';
+robot_name = 'S4RRPR1';
 % robot_name = 'S6RRRRRR10';
 % robot_name = 'S7RRRRRRR1';
-robot_name = 'kuka6dof';
+% robot_name = 'kuka6dof';
 
 %% Init 2
 serroblib_addtopath({robot_name});
-eval(sprintf('TSS = %s_varpar_testfunctions_parameter()', robot_name));
+eval(sprintf('TSS = %s_varpar_testfunctions_parameter();', robot_name));
 pkin = TSS.pkin;
 
 %% Teste Strukturelle Eigenschaften
-  
+
 eval(sprintf('func_regmin = @%s_invdynJ_fixb_regmin_slag_vp;', robot_name));
 eval(sprintf('func_reg2 = @%s_invdynJ_fixb_reg2_slag_vp;', robot_name));
 NQJ = TSS.NQJ;
