@@ -13,6 +13,7 @@
 \usepackage[english]{babel}
 %\usepackage[libertine]{newtxmath}
 \usepackage[no-math]{fontspec}
+\usefonttheme[onlymath]{serif} % Standard-Formelschrift (wird nicht empfohlen)
 \usepackage{multicol}
 \setlength\columnsep{2cm}
 \usepackage{blindtext}
@@ -22,9 +23,11 @@
 \usepackage{bm}
 \graphicspath{{./figures/}}
 
+% TODO: Formelschrift ordentlich einstellen
 \setsansfont[
     BoldFont={Rotis Sans Serif Std Bold}, 
     ItalicFont={Rotis Sans Serif Std Italic},
+    BoldItalicFont={Source Sans Pro Bold Italic},
     ]{Rotis Sans Serif Std}
     
 \author[moritz.schappler@imes.uni-hannover.de]{Moritz Schappler}
@@ -81,7 +84,7 @@ $\bm{a}$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{whiteblock}{Dimensional Synthesis and Robot Model}
 \parbox{\linewidth}{
-\begin{multicols}{3}
+\begin{multicols}{2}
 [
 All human things are subject to decay. And when fate summons, Monarchs must obey. This sentence can be even longer!
 ]
@@ -92,7 +95,12 @@ All human things are subject to decay. And when fate summons, Monarchs must obey
 %    \caption{$ \text{tanh} \left( x \right) $ and its derivatives.}
 %    \label{fig:2}
 %\end{figure}
-\blindtext[1]
+\begin{figure}[t]
+    \centering
+    \input{./figures/dim_synth_dynamics.pdf_tex}
+    %    \caption{Delicious caffe.}
+\end{figure}
+
 \end{multicols}}
 \end{whiteblock}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
