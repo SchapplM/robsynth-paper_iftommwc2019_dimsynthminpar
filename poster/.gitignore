@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.nav
+*.out
+combstructdimsynth_poster.pdf
+*.snm
+*.synctex.gz
+*.toc

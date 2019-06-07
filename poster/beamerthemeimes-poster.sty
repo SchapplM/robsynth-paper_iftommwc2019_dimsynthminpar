@@ -1,0 +1,67 @@
+\RequirePackage{tikz}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{headline}{  
+  \begin{beamercolorbox}[wd=\textwidth]{headline}
+     \vskip25mm\centering
+     \parbox{\linewidth}{\normalbaselines\centering\usebeamercolor{title in headline}\color{fg}{\includegraphics[scale=0.5]{./LOGO_imes_en_Schrift_rechts.pdf} \hfill \includegraphics[scale=0.5]{./luh_logo_rgb.pdf}\par}}%
+     \vspace{20mm}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+      \vskip3em%
+      \ifdefined\researchfield%
+      \parbox{\linewidth}
+      {\normalbaselines\centering\usebeamercolor{title in headline}\color{fg}
+      {\huge\researchfield}}%
+      \vskip3em
+      \fi%
+      \parbox{\linewidth}
+      {\normalbaselines\centering\usebeamercolor{title in headline}\color{fg}
+      {\Huge\textbf{\inserttitle}}}%
+      \vskip3em
+  \end{beamercolorbox}
+}
+
+%\setbeamertemplate{itemize/enumerate body begin}{\vspace*{-1ex}}
+%\setbeamertemplate{itemize/enumerate body end}{\vspace*{-0.5ex}}
+\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{$-$}
+%\setlength\leftmargini{3.5cm}
+
+\setbeamertemplate{block begin}
+{%
+    \vspace*{-7pt}
+    \begin{beamercolorbox}[wd=\paperwidth]{block title}%
+    \vskip1em
+    \tikz \fill [Blau] (0.0,0.0) rectangle (6.0,1.0); \hspace{10mm} \huge\textbf{\insertblocktitle}
+    \vskip1pt
+  \end{beamercolorbox}%
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=25mm]{block body}%
+  \large
+  \vskip1em
+  }
+\setbeamertemplate{block end}{%
+  \vskip1em
+  \end{beamercolorbox}
+}
+
+% disable navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%\setbeamerfont{footline}{size=\small,family=\sffamily}
+\setbeamertemplate{footline}{
+   \begin{beamercolorbox}[wd=\paperwidth]{footline}
+     \vskip15mm
+     \hspace*{25mm}\usebeamercolor{author in footline}{\large\firstauthorline \ifdefined\firstaffiliation\hfill\firstaffiliation\hspace*{25mm}\fi}\par\vskip1ex
+     \ifdefined\secondauthorline\hspace*{25mm}\usebeamercolor{author in footline}{\large\secondauthorline \ifdefined\secondaffiliation\hfill\secondaffiliation\hspace*{25mm}\fi}\par\vskip1ex\fi
+     \ifdefined\thirdauthorline\hspace*{25mm}\usebeamercolor{author in footline}{\large\thirdauthorline \ifdefined\thirdaffiliation\hfill\thirdaffiliation\hspace*{25mm}\fi}\par\vskip1ex\fi
+     \vskip25mm
+   \end{beamercolorbox}
+}
+
+\newenvironment<>{whiteblock}[1]{%
+\setbeamercolor{block title}{fg=Blau,bg=white}%
+\setbeamercolor{block body}{fg=Schwarz,bg=white}%
+\begin{block}#2{#1}}{\end{block}}

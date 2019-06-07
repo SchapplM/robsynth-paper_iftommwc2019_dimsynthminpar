@@ -1,0 +1,120 @@
+% !TEX program = lualatex
+\documentclass[c]{beamer}
+%% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
+%% Possible orientations: portrait, landscape
+%% Font sizes can be changed using the scale option.
+\usepackage[size=a0,orientation=portrait,scale=1.25]{beamerposter}
+\setbeamersize{text margin left=25mm,
+               text margin right=25mm}
+
+\usetheme{imes-poster}
+\usecolortheme{LUH}
+
+\usepackage[english]{babel}
+\usepackage[libertine]{newtxmath}
+\usepackage[no-math]{fontspec}
+\usepackage{multicol}
+\setlength\columnsep{2cm}
+\usepackage{blindtext}
+
+\setsansfont[
+    BoldFont={Rotis Sans Serif Std Bold}, 
+    ItalicFont={Rotis Sans Serif Std Italic},
+    ]{Rotis Sans Serif Std}
+    
+\author[author@imes.uni-hannover.de]{Main Author}
+\title{Yet Another beamerposter Theme\\ (Variable Sizes and Colour Themes)}
+\institute{Institut of Mechatronic Systems}
+\newcommand{\researchfield}{Medical Imaging}
+\newcommand{\firstauthorline}{Authors first line,}
+\newcommand{\secondauthorline}{Authors second line,}
+\newcommand{\thirdauthorline}{Authors third line}
+\newcommand{\firstaffiliation}{Affiliation first line}
+\newcommand{\secondaffiliation}{Affiliation second line}
+\newcommand{\thirdaffiliation}{Affiliation third line}
+
+\newcommand{\postersubsection}[1]{%
+\setlength\fboxsep{0pt}%
+\vfil\penalty125\vfilneg\vskip1.5ex
+\colorbox{Grau}{\parbox[b]{\columnwidth}{\vskip0.75ex%
+\Large\hskip1ex #1%
+\vskip0.75ex}}%
+}
+
+\renewcommand{\arraystretch}{1.2} % more vertical padding for tabular
+
+\begin{document}
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Überschrift 1}
+\parbox{\linewidth}{
+\begin{multicols}{2}
+[
+]
+\blindtext[2]
+
+\postersubsection{Überschrift 2}
+%\begin{figure}[t]
+%    \centering
+%    \includegraphics[width=\columnwidth,trim=0 6cm 0 2cm, clip]{./caffe.jpg}
+%    \caption{Delicious caffe.}
+%    \label{fig:1}
+%\end{figure}
+
+\end{multicols}}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{whiteblock}{Überschrift 1}
+\parbox{\linewidth}{
+\begin{multicols}{3}
+[
+All human things are subject to decay. And when fate summons, Monarchs must obey. This sentence can be even longer!
+]
+\blindtext[1]
+%\begin{figure}[t]
+%    \centering
+%    \includegraphics[width=\columnwidth,trim=0mm 0mm 0mm 0cm, clip]{./plot.pdf}
+%    \caption{$ \text{tanh} \left( x \right) $ and its derivatives.}
+%    \label{fig:2}
+%\end{figure}
+\blindtext[1]
+\end{multicols}}
+\end{whiteblock}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Überschrift 1}
+\parbox{\columnwidth}{
+\begin{multicols}{2}
+[]
+\begin{itemize}
+    \item One
+    \item Two
+    \item Three
+\end{itemize}
+
+It is well known that
+\begin{equation}
+e^{j \varphi} = \cos(\varphi) + j \sin(\varphi).
+\end{equation}
+Another famous inline equation is $ \sqrt{2} = 1.41421356237\!\ldots $
+
+\postersubsection{Überschrift 2}
+
+\blindtext
+
+\begin{table}
+    \begin{tabular}{cccc}
+        \hline
+        first & second & third & fourth \\
+        \hline
+        1 & 2 & 3 & 4 \\
+        5 & 6 & 7 & 8 \\
+        \hline
+    \end{tabular}
+    \caption{Fancy numbers.}
+\end{table}
+
+\end{multicols}}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+\end{document}
