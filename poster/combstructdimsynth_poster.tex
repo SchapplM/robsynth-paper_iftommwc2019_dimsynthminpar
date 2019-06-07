@@ -11,27 +11,32 @@
 \usecolortheme{LUH}
 
 \usepackage[english]{babel}
-\usepackage[libertine]{newtxmath}
+%\usepackage[libertine]{newtxmath}
 \usepackage[no-math]{fontspec}
 \usepackage{multicol}
 \setlength\columnsep{2cm}
 \usepackage{blindtext}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\newcommand{\bm}[1]{\boldsymbol{#1}}
+\usepackage{bm}
+\graphicspath{{./figures/}}
 
 \setsansfont[
     BoldFont={Rotis Sans Serif Std Bold}, 
     ItalicFont={Rotis Sans Serif Std Italic},
     ]{Rotis Sans Serif Std}
     
-\author[author@imes.uni-hannover.de]{Main Author}
-\title{Yet Another beamerposter Theme\\ (Variable Sizes and Colour Themes)}
-\institute{Institut of Mechatronic Systems}
-\newcommand{\researchfield}{Medical Imaging}
-\newcommand{\firstauthorline}{Authors first line,}
-\newcommand{\secondauthorline}{Authors second line,}
-\newcommand{\thirdauthorline}{Authors third line}
-\newcommand{\firstaffiliation}{Affiliation first line}
-\newcommand{\secondaffiliation}{Affiliation second line}
-\newcommand{\thirdaffiliation}{Affiliation third line}
+\author[moritz.schappler@imes.uni-hannover.de]{Moritz Schappler}
+\title{Exploiting Dynamics Parameter Linearity for Design Optimization in a Combined Structural and Dimensional Robot Synthesis}
+\institute{Institute of Mechatronic Systems}
+%\newcommand{\researchfield}{Medical Imaging}
+\newcommand{\firstauthorline}{Moritz Schappler, M.\,Sc.}
+\newcommand{\secondauthorline}{Svenja Tappe, M.\,Sc.,}
+\newcommand{\thirdauthorline}{Prof.\,Dr.-Ing. Tobias Ortmaier}
+%\newcommand{\firstaffiliation}{Affiliation first line}
+%\newcommand{\secondaffiliation}{Affiliation second line}
+%\newcommand{\thirdaffiliation}{Affiliation third line}
 
 \newcommand{\postersubsection}[1]{%
 \setlength\fboxsep{0pt}%
@@ -46,25 +51,35 @@
 \begin{document}
 \begin{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{block}{Überschrift 1}
+\begin{block}{Combined Structural and Dimensional Robot Synthesis}
 \parbox{\linewidth}{
 \begin{multicols}{2}
 [
 ]
-\blindtext[2]
+\blindtext[1]
+
+\begin{figure}[t]
+    \centering
+	\input{./figures/comb_struct_dim_synth.pdf_tex}
+%    \caption{Delicious caffe.}
+\end{figure}
+
+$a$
+$\bm{a}$
+
+%\vspace{30cm}
 
 \postersubsection{Überschrift 2}
 %\begin{figure}[t]
 %    \centering
-%    \includegraphics[width=\columnwidth,trim=0 6cm 0 2cm, clip]{./caffe.jpg}
-%    \caption{Delicious caffe.}
-%    \label{fig:1}
+%    \includegraphics[width=\columnwidth,trim=0 0cm 0 0cm, clip]{Struktursynthese_Fragezeichen.pdf}
+%%    \caption{Delicious caffe.}
 %\end{figure}
 
 \end{multicols}}
 \end{block}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{whiteblock}{Überschrift 1}
+\begin{whiteblock}{Dimensional Synthesis and Robot Model}
 \parbox{\linewidth}{
 \begin{multicols}{3}
 [
@@ -81,7 +96,7 @@ All human things are subject to decay. And when fate summons, Monarchs must obey
 \end{multicols}}
 \end{whiteblock}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{block}{Überschrift 1}
+\begin{block}{Results}
 \parbox{\columnwidth}{
 \begin{multicols}{2}
 []
