@@ -1,5 +1,6 @@
 % !TEX program = lualatex
 \documentclass[c]{beamer}
+
 %% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
 %% Possible orientations: portrait, landscape
 %% Font sizes can be changed using the scale option.
@@ -9,11 +10,10 @@
 
 \usetheme{imes-poster}
 \usecolortheme{LUH}
+\usefonttheme{professionalfonts}
 
 \usepackage[english]{babel}
-%\usepackage[libertine]{newtxmath}
-\usepackage[no-math]{fontspec}
-\usefonttheme[onlymath]{serif} % Standard-Formelschrift (wird nicht empfohlen)
+
 \usepackage{multicol}
 \setlength\columnsep{2cm}
 \usepackage{blindtext}
@@ -23,12 +23,15 @@
 \usepackage{bm}
 \graphicspath{{./figures/}}
 
-% TODO: Formelschrift ordentlich einstellen
-\setsansfont[
-    BoldFont={Rotis Sans Serif Std Bold}, 
-    ItalicFont={Rotis Sans Serif Std Italic},
-    BoldItalicFont={Source Sans Pro Bold Italic},
+\usepackage[no-math]{fontspec}
+\setmainfont[
     ]{Rotis Sans Serif Std}
+    
+% Different math fonts
+
+%\usepackage{mathpazo}
+%\usepackage{sfmath}
+\usepackage{newtxsf}
     
 \author[moritz.schappler@imes.uni-hannover.de]{Moritz Schappler}
 \title{Exploiting Dynamics Parameter Linearity for Design Optimization in a Combined Structural and Dimensional Robot Synthesis}
@@ -117,6 +120,9 @@ All human things are subject to decay. And when fate summons, Monarchs must obey
 It is well known that
 \begin{equation}
 e^{j \varphi} = \cos(\varphi) + j \sin(\varphi).
+\end{equation}
+\begin{equation}
+  \bm{H}(x) = \mathbb{E} \left[ - \log ( p(\hat{y} \vert x) ) \right] = - \sum_{i=1}^{N} \hat{y}_{i}(x) \log (\hat{y}_{i}(x))
 \end{equation}
 Another famous inline equation is $ \sqrt{2} = 1.41421356237\!\ldots $
 
