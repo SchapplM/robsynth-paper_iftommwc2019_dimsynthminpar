@@ -64,12 +64,16 @@
     \put(0,0){\includegraphics[width=\unitlength,page=4]{comb_struct_dim_synth.pdf}}%
     \put(0.6639496,0.14484044){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Gearbox Index}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{comb_struct_dim_synth.pdf}}%
-    \put(0.71177163,0.12228321){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
-    \put(0.90180798,0.12228321){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
+    \put(0.71177163,0.12991084){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
+    \put(0.90180798,0.12991084){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{comb_struct_dim_synth.pdf}}%
-    \put(0.69000133,0.01691869){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Iterations}}}}%
+    \put(0.69000134,0.01691869){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Iterations}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{comb_struct_dim_synth.pdf}}%
-    \put(0.66660968,0.05164324){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Fcn}}}}}%
+    \put(0.66660968,0.03791346){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{comb_struct_dim_synth.pdf}}%
+    \put(0.89827522,0.02731365){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Generation}}}}%
+    \put(0.84795183,0.04050543){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
+    \put(0.94321391,0.09105384){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Best}}}}%
+    \put(0.94321391,0.07709407){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Mean}}}}%
   \end{picture}%
 \endgroup%
