@@ -50,17 +50,17 @@
   \makeatother%
   \begin{picture}(1,0.48421053)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{reglin_results.pdf}}%
-    \put(0.2599126,0.4037114){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{SCARA: InvDyn}}}}%
+    \put(0.2599126,0.4037114){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{SCARA: equ. (1)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{reglin_results.pdf}}%
-    \put(0.2599126,0.37542823){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{SCARA: RegMult}}}}%
+    \put(0.2599126,0.37542823){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{SCARA: equ. (2)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{reglin_results.pdf}}%
-    \put(0.2599126,0.34714506){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Ind.Rob.: InvDyn}}}}%
+    \put(0.2599126,0.34714506){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Ind.Rob.: equ. (1)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{reglin_results.pdf}}%
-    \put(0.2599126,0.31886188){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Ind.Rob.: RegMult}}}}%
+    \put(0.2599126,0.31886188){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Ind.Rob.: equ. (2)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{reglin_results.pdf}}%
-    \put(0.2599126,0.29057871){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{LWR: InvDyn}}}}%
+    \put(0.2599126,0.29057871){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{LWR: equ. (1)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{reglin_results.pdf}}%
-    \put(0.2599126,0.26229494){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{LWR: RegMult}}}}%
+    \put(0.2599126,0.26229494){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{LWR: equ. (2)}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{reglin_results.pdf}}%
     \put(0.83483804,0.39973908){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{$N_\mathrm{T}=10$}}}}%
     \put(0.83483808,0.37222439){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{$N_\mathrm{T}=50$}}}}%
@@ -73,10 +73,10 @@
     \put(0.54810336,0.30894894){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{100}}}}%
     \put(0.54810336,0.35848521){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{120}}}}%
     \put(0.54810336,0.40372109){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{140}}}}%
-    \put(0.62445248,0.01844802){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{number of dynamics iterations}}}}%
-    \put(0.11705024,0.01844802){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{number of dynamics iterations}}}}%
-    \put(0.53310227,0.1104237){\color[rgb]{0,0,0}\rotatebox{90.4618743}{\makebox(0,0)[lb]{\smash{\small{Time Ratio $T_\mathrm{RegMult} / T_\mathrm{InvDyn}$ in \%}}}}}%
-    \put(0.03725867,0.07127002){\color[rgb]{0,0,0}\rotatebox{90.4618743}{\makebox(0,0)[lb]{\smash{\small{Time for 1000 dynamics evaluations in ms}}}}}%
+    \put(0.61851096,0.01844802){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Number of dynamics iterations ($N_\mathrm{D}$)}}}}%
+    \put(0.10813795,0.01844802){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Number of dynamics iterations ($N_\mathrm{D}$)}}}}%
+    \put(0.53310238,0.08517219){\color[rgb]{0,0,0}\rotatebox{90.4618743}{\makebox(0,0)[lb]{\smash{\small{Time Ratio equ. (\ref{equ:invdyn_std}) / equ. (\ref{equ:invdyn_plin}) in \%}}}}}%
+    \put(0.03725867,0.0727554){\color[rgb]{0,0,0}\rotatebox{90.4618743}{\makebox(0,0)[lb]{\smash{\small{Time for $N_\mathrm{T}$=1000 samples in ms}}}}}%
     \put(0.05601947,0.16414319){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{0.5}}}}%
     \put(0.05601947,0.07516646){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{0.0}}}}%
     \put(0.05601947,0.25314098){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{1.0}}}}%
@@ -91,7 +91,7 @@
     \put(0.82220159,0.05075595){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{30}}}}%
     \put(0.90120328,0.05075595){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{40}}}}%
     \put(0.58625119,0.05075595){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{0}}}}%
-    \put(0.59329558,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Computation Time Ratio for Trajectory}}}}%
+    \put(0.58141254,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Design Optimization for LWR in Trajectory}}}}%
     \put(0.0810731,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Computation Time with parameter linearity}}}}%
   \end{picture}%
 \endgroup%

@@ -54,7 +54,7 @@
     \put(0.10724194,0.63591461){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Kinematics}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dim_synth_dynamics.pdf}}%
     \put(0.42895165,0.67479873){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse}}}%
-    \put(0.42895165,0.63834486){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dynamics}}}%
+    \put(0.42895165,0.63834486){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dynamics (\ref{equ:invdyn_std})}}}%
     \put(0.01998112,0.69021295){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics.pdf}}%
     \put(0.35165547,0.48125049){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of Drive}}}%
@@ -70,14 +70,14 @@
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dim_synth_dynamics.pdf}}%
     \put(0.10745694,0.60517729){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}=\bm{g}(\bm{x},\bm{\varrho})$}}}%
     \put(0.07407487,0.19308076){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varPhi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho})$}}}%
-    \put(0.44584971,0.18927053){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau} = \bm{\varPhi}_{\bm{\tau}}\bm{\delta}$}}}%
+    \put(0.44584971,0.18778515){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau} = \bm{\varPhi}_{\bm{\tau}}\bm{\delta}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dim_synth_dynamics.pdf}}%
     \put(0.78671602,0.67479874){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Global}}}%
     \put(0.79202092,0.59060051){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Criteria}}}%
     \put(0.06412836,0.27117532){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse Dynamics}}}%
     \put(0.06625033,0.23085786){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Regressor Matrix}}}%
     \put(0.4322904,0.26693137){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse Dynamics}}}%
-    \put(0.43441235,0.22661391){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Linear Form}}}%
+    \put(0.43441235,0.22661391){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Linear Form (\ref{equ:invdyn_plin})}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dim_synth_dynamics.pdf}}%
     \put(0.4025828,0.09186875){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of Drive}}}%
     \put(0.4025828,0.05379482){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Train and Link Geometry}}}%
@@ -85,7 +85,7 @@
     \put(0.78523064,0.26950218){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Global}}}%
     \put(0.79053554,0.18530395){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Criteria}}}%
     \put(0.78310864,0.22706277){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization}}}%
-    \put(0.04439402,0.0260876){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Design Optimization}}}%
+    \put(0.04439402,0.0260876){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{Design Optimization}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{dim_synth_dynamics.pdf}}%
     \put(0.3236812,0.27396539){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\varPhi}_{\bm{\tau}}(t)$}}}%
     \put(0.34409931,0.1984178){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\delta}$}}}%
@@ -94,5 +94,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=10]{dim_synth_dynamics.pdf}}%
     \put(0.00384524,0.30073727){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{dim_synth_dynamics.pdf}}%
+    \put(0.04439402,0.06413664){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{Parameter linear}}}}%
+    \put(0.04439402,0.10556867){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{Proposed}}}}%
   \end{picture}%
 \endgroup%

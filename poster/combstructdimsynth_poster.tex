@@ -34,10 +34,10 @@
 \usepackage{newtxsf}
     
 \author[moritz.schappler@imes.uni-hannover.de]{Moritz Schappler}
-\title{Exploiting Dynamics Parameter Linearity for Design Opti-\\mization in a Combined Structural and Dimensional Synthesis}
+\title{Dynamics Parameter Linearity for Design Optimization in a Combined Structural and Dimensional Synthesis}
 \institute{Institute of Mechatronic Systems}
 %\newcommand{\researchfield}{Medical Imaging}
-\newcommand{\firstauthorline}{Moritz Schappler, M.\,Sc.}
+\newcommand{\firstauthorline}{Moritz Schappler, M.\,Sc.,}
 \newcommand{\secondauthorline}{Svenja Tappe, M.\,Sc.,}
 \newcommand{\thirdauthorline}{Prof.\,Dr.-Ing. Tobias Ortmaier}
 %\newcommand{\firstaffiliation}{Affiliation first line}
@@ -81,6 +81,7 @@
     \item High computational effort: Dimensional synthesis for all results of the structural synthesis. Requires improved efficiency.
 %    \item text here
 %    \item text here
+%    \item text here
 \end{itemize}
 
 \begin{figure}[t]
@@ -96,22 +97,30 @@
 \parbox{\linewidth}{
 \begin{multicols}{2}
 \begin{itemize}
-    \item Assumption: Task trajectory $\bm{x}(t)$ is given and not part of optimization
-    \item Allows exploiting the linearity of the rigid body dynamics
+    \item Assumption: Task trajectory $\bm{x}(t)$ is given and not part of optimization.
+    \item Classical approach: standard inverse dynamics for design optimization
 \end{itemize}
-\begin{align}
+\begin{equation}
 \bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho},\bm{\delta})
-&= 
+= 
 \bm{M}(\bm{q},\bm{\varrho},\bm{\delta}) \ddot{\bm{q}}
 + \bm{c}(\bm{q},\dot{\bm{q}},\bm{\varrho},\bm{\delta})
-+ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta}) \nonumber \\
-&=
-\bm{\varPhi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta} \nonumber
-\end{align}
-Multiple nested Optimization Loops to find values for the parameters:
++ \bm{g}(\bm{q},\bm{\varrho},\bm{\delta})
+\label{equ:invdyn_std}
+\end{equation}
+\begin{itemize}
+    \item Novel approach: Exploiting the linearity of the rigid body dynamics
+\end{itemize}
+\begin{equation}
+\bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho},\bm{\delta})
+=
+\bm{\varPhi}_{\bm{\tau}}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho}) \bm{\delta}
+\label{equ:invdyn_plin}
+\end{equation}
+Optimization Loops to find values for the parameters:
 \begin{itemize}
     \item \emph{Dimensional synthesis}: Find kinematic parameters $\bm{\varrho}$ based on global criteria (e.\,g. energy consumption) and global constraints (e.\,g. minimum workspace size)
-    \item \emph{Design optimization} of drive trains and links gives dynamics parameters $\bm{\delta}$. Uses global criteria from the dimensional synthesis and intermediate criteria (e.\,g. minimal mass) and constraints (torque and velocity limits, joint range)
+    \item \emph{Design optimization} of drive trains and links within dimensional synthesis gives dynamics parameters $\bm{\delta}$. Uses global criteria from the dimensional synthesis and intermediate criteria (e.\,g. minimal mass) and constraints (torque and velocity limits, joint range)
 \end{itemize}
 Possible improvements for serial and parallel robots:
 \begin{itemize}
@@ -121,8 +130,8 @@ Possible improvements for serial and parallel robots:
     \begin{itemize}
         \item Gradient-based inverse kinematics and projection-based dynamics for parallel robots
     \end{itemize}
-    \item Serial robots: Recursive optimization from distal to proximal links
-    \item Parallel robots: Combined design optimization of all parameters
+%    \item Serial robots: Recursive optimization from distal to proximal links
+%    \item Parallel robots: Combined design optimization of all parameters
 %    \item text here
 %    \item text here
 \end{itemize}
@@ -146,21 +155,22 @@ Possible improvements for serial and parallel robots:
 \begin{multicols}{2}
 []
 \begin{itemize}
-    \item Serial Robots: Time reduction of inverse dynamics about 70\,\%
+    \item Regressor $\bm{\varPhi}$ only needs to be calculated once for the trajectory with $N_\mathrm{T}$ samples. $N_\mathrm{D}$ loops of dynamics evaluations in design optimization.
+    \item Serial Robots: Parameter linearity reduces computation about 70\,\%.
     \begin{itemize}
-        \item Robots: SCARA (4-DoF), industrial robot (6-DoF), collaborative lightweight robot (7-DoF)
+        \item Robots: SCARA (4-DoF), industrial robot (6-DoF), collaborative lightweight robot (LWR, 7-DoF)
 %        \item Left: Read: For changing the dynamics parameters 10 times the calculation for the LWR trajectory takes 0.9\,s with the standard method and 0.5\,s with the proposed method.
-        \item Left: Changing the parameters 10 times reduces the time for the LWR from 0.9\,ms to 0.5\,ms.
-        \item Right (only LWR): Using just 10 robot poses reduces the time only about 20\,\%.
+        \item $N_\mathrm{D}$=10 iterations in dynamics optimization reduces the time for the LWR from 0.9\,ms to 0.5\,ms.
+        \item Using just $N_\mathrm{T}$=10 robot poses reduces the computation time only about 20\,\%.
     \end{itemize}
-    \item Recursion for serial robots: dynamics calculation only small part of the design optimization, therefore less overall benefit 
-    \item Higher potential for parallel robots: Dynamics re-evaluation necessary for each parameter iteration (ongoing works)
+    \item Serial robots: Recursive optimization from distal to proximal links. Dynamics calculation only small part of the design optimization, therefore less overall benefit 
+    \item Parallel robots: Combined design optimization for all parameters. Dynamics re-evaluation necessary for each parameter iteration leads to higher potential as for serial robots (ongoing works).
 \end{itemize}
 
-\begin{figure}[t]
-    \centering
-    \input{./figures/outlook_serial2parallel.pdf_tex}
-\end{figure}
+%\begin{figure}[t]
+%    \centering
+%    \input{./figures/outlook_serial2parallel.pdf_tex}
+%\end{figure}
 
 %\postersubsection{Überschrift 2}
 
