@@ -92,6 +92,8 @@
     \put(0.90120328,0.05075595){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{40}}}}%
     \put(0.58625119,0.05075595){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{0}}}}%
     \put(0.58141254,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Design Optimization for LWR in Trajectory}}}}%
-    \put(0.0810731,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Computation Time with parameter linearity}}}}%
+    \put(0.0810731,0.45137327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Computation Time with Parameter Linearity}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{reglin_results.pdf}}%
+    \put(0.39173252,0.18498121){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{-70\,\%}}}}%
   \end{picture}%
 \endgroup%

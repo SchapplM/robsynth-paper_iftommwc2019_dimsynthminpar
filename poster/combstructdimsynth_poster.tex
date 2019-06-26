@@ -71,7 +71,7 @@
 %\begin{itemize}
     \item Structural synthesis: ``Which kinematic structures have the required degrees of freedom for my task?'' 
     \begin{itemize}
-    \item result: joint types and alignment, leg chain orientation for parallel robots
+    \item results: joint types and alignment, leg chain orientation for parallel robots
     \end{itemize}
     \item Dimensional synthesis: ``What are the optimal dimensions for the one robot structure at hand?'' 
     \begin{itemize}
@@ -100,8 +100,8 @@
 \parbox{\linewidth}{
 \begin{multicols}{2}
 \begin{itemize}
-    \item Assumption: Task trajectory $\bm{x}(t)$ is given and not part of optimization.
-    \item Classical approach: standard inverse dynamics for design optimization
+    \item Assumption: Trajectory $\bm{x}(t)$ is given and not part of optimization.
+    \item Classical approach: Standard inverse dynamics for design optimization
 \end{itemize}
 \begin{equation}
 \bm{\tau}(\bm{q},\dot{\bm{q}},\ddot{\bm{q}},\bm{\varrho},\bm{\delta})
@@ -111,6 +111,7 @@
 + \bm{g}(\bm{q},\bm{\varrho},\bm{\delta})
 \label{equ:invdyn_std}
 \end{equation}
+\vspace{-1.5cm} % Sonst ist der Leerraum nach der Gleichung ziemlich groß
 \begin{itemize}
     \item Novel approach: Exploiting the linearity of the rigid body dynamics
 \end{itemize}

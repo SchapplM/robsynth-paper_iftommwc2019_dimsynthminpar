@@ -48,32 +48,45 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.48684211)%
+  \begin{picture}(1,0.46842105)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{comb_struct_dim_synth.pdf}}%
-    \put(0.04439079,0.41467102){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Robot Task}}}%
-    \put(0.37062487,0.40467179){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Structural}}}%
-    \put(0.37062487,0.35902345){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
+    \put(0.03993465,0.40835246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Robot Task}}}%
+    \put(0.37062487,0.40835246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Structural}}}%
+    \put(0.37062487,0.36347962){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{comb_struct_dim_synth.pdf}}%
-    \put(0.7258711,0.40467179){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dimensional}}}%
-    \put(0.7258711,0.35902345){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
-    \put(0.04442629,0.3630811){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{DoF: $\alpha\mathrm{T}\beta\mathrm{R}$}}}%
-    \put(0.04439079,0.31337453){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Trajectory $\bm{x}(t)$}}}%
+    \put(0.7258711,0.40835246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dimensional}}}%
+    \put(0.7258711,0.36347962){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synthesis}}}%
+    \put(0.03997015,0.36347962){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{DoF/Trajectory}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{comb_struct_dim_synth.pdf}}%
-    \put(0.5446846,0.42421182){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{all struc-}}}%
-    \put(0.56771153,0.36800681){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{tures}}}%
+    \put(0.5446846,0.41678495){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{all struc-}}}%
+    \put(0.56771153,0.36057994){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{tures}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{comb_struct_dim_synth.pdf}}%
-    \put(0.64796258,0.14102883){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Gearbox Index}}}}}%
+    \put(0.64584058,0.02538135){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Gearbox Index}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{comb_struct_dim_synth.pdf}}%
-    \put(0.69452613,0.12649211){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
-    \put(0.87956153,0.12649211){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
+    \put(0.69240413,0.01084472){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
+    \put(0.87743953,0.01084472){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Motor Index}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{comb_struct_dim_synth.pdf}}%
-    \put(0.67332878,0.01647344){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Iterations}}}}%
+    \put(0.66802386,0.161298){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Iterations}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{comb_struct_dim_synth.pdf}}%
-    \put(0.65055278,0.03691572){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
+    \put(0.64970398,0.17579872){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{comb_struct_dim_synth.pdf}}%
-    \put(0.87612123,0.02659485){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Generation}}}}%
-    \put(0.82712214,0.03943948){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
-    \put(0.91987732,0.08865767){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Best}}}}%
-    \put(0.91987732,0.07506526){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Mean}}}}%
+    \put(0.87081627,0.1714194){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Generation}}}}%
+    \put(0.82181718,0.17832248){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Fitness Value}}}}}%
+    \put(0.91308694,0.23348222){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Best}}}}%
+    \put(0.91308694,0.21988981){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lb]{\smash{\tiny{Mean}}}}%
+    \put(0.33151832,0.06871262){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{library of structures}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{comb_struct_dim_synth.pdf}}%
+    \put(0.31039535,0.04147815){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{from structural synthesis}}}}%
+    \put(0.64928346,0.13024978){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Drive Train Optimization}}}}%
+    \put(0.6402651,0.29523309){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{Kinematics Optimization}}}}%
+    \put(0.66326946,0.27721266){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Comparison of}}}}%
+    \put(0.81978395,0.27721266){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{Optimization of one Structure}}}}%
+    \put(0.81978395,0.26077756){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{using Genetic Algorithms}}}}%
+    \put(0.66326946,0.26077756){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{multiple Structures}}}}%
+    \put(0.7800309,0.1822646){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{$1^\mathrm{st}$}}}}%
+    \put(0.7800309,0.19537945){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{$2^\mathrm{nd}$}}}}%
+    \put(0.7800309,0.20849429){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{$3^\mathrm{rd}$}}}}%
+    \put(0.7800309,0.22160914){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\tiny{$4^\mathrm{th}$}}}}%
+    \put(0.8196301,0.02538135){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[lb]{\smash{\tiny{Gearbox Index}}}}}%
   \end{picture}%
 \endgroup%
