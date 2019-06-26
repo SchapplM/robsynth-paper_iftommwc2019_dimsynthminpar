@@ -35,7 +35,6 @@
 \author[moritz.schappler@imes.uni-hannover.de]{Moritz Schappler}
 \title{Dynamics Parameter Linearity for Design Optimization in a Combined Structural and Dimensional Synthesis}
 \institute{Institute of Mechatronic Systems}
-%\newcommand{\researchfield}{Medical Imaging}
 \newcommand{\firstauthorline}{Moritz Schappler, M.\,Sc.,}
 \newcommand{\secondauthorline}{Svenja Tappe, M.\,Sc.,}
 \newcommand{\thirdauthorline}{Prof.\,Dr.-Ing. Tobias Ortmaier}
@@ -63,12 +62,8 @@
 \begin{block}{Combined Structural and Dimensional Robot Synthesis}
 \parbox{\linewidth}{
 \begin{multicols}{2}
-%\postersubsection{Motivation}
 \begin{itemize}
     \item Task specific robots allow improvement of performance criteria such as energy consumption compared to standard industrial robots.
-%\end{itemize}
-%\postersubsection{Motivation}
-%\begin{itemize}
     \item Structural synthesis: ``Which kinematic structures have the required degrees of freedom for my task?'' 
     \begin{itemize}
     \item results: joint types and alignment, leg chain orientation for parallel robots
@@ -82,9 +77,6 @@
         \item requires calculation of the performance criteria for all possible robot structures
     \end{itemize}
     \item High computational effort: Dimensional synthesis for all results of the structural synthesis. Requires improved efficiency.
-%    \item text here
-%    \item text here
-%    \item text here
 \end{itemize}
 
 \begin{figure}[t]
@@ -129,26 +121,14 @@ Optimization Loops to find values for the parameters:
 Possible improvements for serial and parallel robots:
 \begin{itemize}
     \item Simplification of the calculation by exploiting the parameter linearity of the dynamics (lower part of the figure)
-%    \item Possible for serial link and parallel robots.
     \item Prerequisite: General inverse kinematics and dynamics modeling for all robot structures (serial/parallel) from the structural synthesis
     \begin{itemize}
         \item Gradient-based inverse kinematics and projection-based dynamics for parallel robots
     \end{itemize}
-%    \item Serial robots: Recursive optimization from distal to proximal links
-%    \item Parallel robots: Combined design optimization of all parameters
-%    \item text here
-%    \item text here
 \end{itemize}
-%\begin{figure}[t]
-%    \centering
-%    \includegraphics[width=\columnwidth,trim=0mm 0mm 0mm 0cm, clip]{./plot.pdf}
-%    \caption{$ \text{tanh} \left( x \right) $ and its derivatives.}
-%    \label{fig:2}
-%\end{figure}
 \begin{figure}[t]
     \centering
     \input{./figures/dim_synth_dynamics.pdf_tex}
-    %    \caption{Delicious caffe.}
 \end{figure}
 
 \end{multicols}}
@@ -163,7 +143,6 @@ Possible improvements for serial and parallel robots:
     \item Serial Robots: Parameter linearity reduces computation about 70\,\%.
     \begin{itemize}
         \item Robots: SCARA (4-DoF), industrial robot (6-DoF), collaborative lightweight robot (LWR, 7-DoF)
-%        \item Left: Read: For changing the dynamics parameters 10 times the calculation for the LWR trajectory takes 0.9\,s with the standard method and 0.5\,s with the proposed method.
         \item $N_\mathrm{D}$=10 iterations in dynamics optimization reduces the time for the LWR from 0.9\,ms to 0.5\,ms.
         \item Using just $N_\mathrm{T}$=10 robot poses reduces the computation time only about 20\,\%.
     \end{itemize}
@@ -171,18 +150,10 @@ Possible improvements for serial and parallel robots:
     \item Parallel robots: Combined design optimization for all parameters. Dynamics re-evaluation necessary for each parameter iteration leads to higher potential as for serial robots (ongoing works).
 \end{itemize}
 
-%\begin{figure}[t]
-%    \centering
-%    \input{./figures/outlook_serial2parallel.pdf_tex}
-%\end{figure}
-
-%\postersubsection{Überschrift 2}
-
 \begin{figure}[t]
     \centering
     \input{./figures/reglin_results.pdf_tex}
 \end{figure}
-
 
 \end{multicols}}
 \end{block}

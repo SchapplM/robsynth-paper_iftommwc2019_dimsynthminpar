@@ -55,7 +55,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dim_synth_dynamics.pdf}}%
     \put(0.42895165,0.67479873){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Inverse}}}%
     \put(0.42895165,0.63834486){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dynamics (\ref{equ:invdyn_std})}}}%
-    \put(0.01998112,0.69021295){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
+    \put(0.01552498,0.69318371){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{x}(t)$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dim_synth_dynamics.pdf}}%
     \put(0.35165547,0.48125049){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Optimization of Drive}}}%
     \put(0.35165547,0.43723504){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Train and Link Geometry}}}%
