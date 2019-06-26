@@ -19,7 +19,6 @@
 \usepackage{blindtext}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\newcommand{\bm}[1]{\boldsymbol{#1}}
 \usepackage{bm}
 \graphicspath{{./figures/}}
 
@@ -40,10 +39,15 @@
 \newcommand{\firstauthorline}{Moritz Schappler, M.\,Sc.,}
 \newcommand{\secondauthorline}{Svenja Tappe, M.\,Sc.,}
 \newcommand{\thirdauthorline}{Prof.\,Dr.-Ing. Tobias Ortmaier}
-%\newcommand{\firstaffiliation}{Affiliation first line}
-%\newcommand{\secondaffiliation}{Affiliation second line}
-%\newcommand{\thirdaffiliation}{Affiliation third line}
-
+\newcommand{\thirdaffiliation}{
+\begin{minipage}{30cm}
+    \begin{flushright}
+    \vspace{-4.5cm}
+    % Binde das automatisch konvertierte Bild ein (ist kleiner)
+    \includegraphics[height=4.5cm]{../dfg_logo_schriftzug_blau_foerderung_4c-eps-converted-to.pdf}
+    \end{flushright}
+\end{minipage}
+}
 \newcommand{\postersubsection}[1]{%
 \setlength\fboxsep{0pt}%
 \vfil\penalty125\vfilneg\vskip1.5ex
@@ -53,7 +57,6 @@
 }
 
 \renewcommand{\arraystretch}{1.2} % more vertical padding for tabular
-
 \begin{document}
 \begin{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
