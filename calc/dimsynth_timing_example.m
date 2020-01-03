@@ -141,8 +141,8 @@ for rr = 1:length(Rob_Names)
     plot(nid_val, 1e3*mean(T4m_gesn(:,:, i),2), 'b-v');
     % Spannbreite der Daten kennzeichnen
     for k = 1:length(nid_val)
-      plot([1;1]*nid_val(k), 1e3*minmax(T2m_ges(k, :, i))', 'r-');
-      plot([1;1]*nid_val(k), 1e3*minmax(T4m_gesn(k, :, i))', 'b--');
+      plot([1;1]*nid_val(k), 1e3*minmax2(T2m_ges(k, :, i))', 'r-');
+      plot([1;1]*nid_val(k), 1e3*minmax2(T4m_gesn(k, :, i))', 'b--');
     end
 
     title(sprintf('nt val = %d', nt_val(i)));
@@ -160,8 +160,8 @@ for rr = 1:length(Rob_Names)
 
     % Spannbreite der Daten kennzeichnen
     for k = 1:length(nid_val)
-      plot([1;1]*nid_val(k), 1e6*minmax(T2m_ges(k, :, i)/n_op(k))', 'r-');
-      plot([1;1]*nid_val(k), 1e6*minmax(T4m_gesn(k, :, i)/n_op(k))', 'b-');
+      plot([1;1]*nid_val(k), 1e6*minmax2(T2m_ges(k, :, i)/n_op(k))', 'r-');
+      plot([1;1]*nid_val(k), 1e6*minmax2(T4m_gesn(k, :, i)/n_op(k))', 'b-');
     end
     title(sprintf('nt val = %d', nt_val(i)));
     ylabel('Zeit (pro Zeitschritt) in us');
