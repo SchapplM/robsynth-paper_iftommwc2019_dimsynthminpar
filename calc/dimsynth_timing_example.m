@@ -1,13 +1,12 @@
 % Beispiel für die Struktursynthese mit Entwurfsoptimierung der Antriebe
 % Zeitmessung für die Ausnutzung der parameterlinearen Form
-% 
+% Erstellt Daten für Fig. 4 des Papers
 
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de, 2019-03
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
 clc
 clear
-warning off % für IK-Warnungen
 
 %% Benutzereingaben
 short = false; % true: Nur wenige Wiederholungen, damit das Bild schnell gezeichnet wird
